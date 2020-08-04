@@ -1,0 +1,76 @@
+<div class="filter-modal-wrap">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="mat-dialog-title">
+        <h2>Filter Table</h2><button mat-icon-button mat-dialog-close><span class="material-icons close-icon">close</span></button>
+    </div>
+    <div class="mat-dialog-content">
+        <div fxLayout fxLayout.lt-md="column" fxLayoutAlign="space-between center" fxLayoutAlign.gt-md="flex-start" fxLayoutGap.gt-md="25px">
+            <!-- <div fxHide fxFlex="25%" class="movePhase-filter">
+                <h6>Move Phase:</h6>
+                <app-filter-selection [dataSet]="movePhases" [(selectedDataSet)]="selectedMovePhases"></app-filter-selection>
+            </div> -->
+            <div fxFlex="25%"  class="filestatus-filter">
+                <h6>File Status:</h6>
+                <!-- <app-filter-selection [dataSet]="fileStatuses" [(selectedDataSet)]="selectedFileStatuses"></app-filter-selection> -->
+            </div>
+            <div fxFlex="25%"  class="departure-filter">
+                <h6>Departure:</h6>
+                <!-- <app-filter-selection [filterOptions]="departureFilterOptions" [(selectedDataSet)]="selectedDepartures" (search)="getLocations('dept', $event)" [dataSet]="departures" [PlaceHolder]="'City, State, or Country'" ></app-filter-selection> -->
+            </div>
+            <div fxFlex="25%"  class="destination-filter">
+                <h6>Destination:</h6>
+                <!-- <app-filter-selection [filterOptions]="destinationFilterOptions" [(selectedDataSet)]="selectedDestinations" (search)="getLocations('dest', $event)" [dataSet]="destinations" [PlaceHolder]="'City, State, or Country'"></app-filter-selection> -->
+            </div>
+            <div fxFlex="25%" class="policy-filter">
+                <h6>Policy:</h6>
+                <!-- <app-filter-selection [filterOptions]="policyFilterOptions" [(selectedDataSet)]="selectedPolicies" (search)="getPoliciesByClientId($event)" [dataSet]="filteredPolicies" [PlaceHolder]="'Policy Name contains...'" ></app-filter-selection> -->
+            </div>
+        </div>
+        <!-- <div fxHide class="selection-block" fxLayout fxLayout.lt-md="column" fxLayoutAlign="space-between center" fxLayoutGap.gt-md="25px">
+            <div fxFlex="50%" class="range-block">
+                <div class="relative-block" id="effectiveTransferDate">
+                    <h6>Effective Transfer Date Range:</h6>
+                    <div class="inline-blk startDate">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="startDate" placeholder="Start Date" [(ngModel)]="effectiveStartDate">
+                            <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                            <mat-datepicker #startDate></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="hyphenField inline-blk">-</div>
+                    <div class="inline-blk">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="endDate" placeholder="End Date" [(ngModel)]="effectiveEndDate" (dateChange)="effectiveEndDateChange()">
+                            <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                            <mat-datepicker #endDate></mat-datepicker>
+                        </mat-form-field>
+                        <div class="optionalField">optional</div>
+                    </div>
+                </div>
+                <div class="relative-block" id="totalCostRange">
+                    <h6>Total Cost Range:</h6>
+                    <div class="inline-blk minCost">
+                        <mat-form-field>
+                            <input matInput placeholder="Min Total USD" [(ngModel)]="totalMinCost">
+                        </mat-form-field>
+                    </div>
+                    <div class="hyphenField inline-blk">-</div>
+                    <div class="inline-blk">
+                        <mat-form-field>
+                            <input matInput placeholder="Max Total USD" [(ngModel)]="totalMaxCost" (blur)="totalMaxCostBlur()">
+                        </mat-form-field>
+                        <div class="optionalField">optional</div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="mat-dialog-actions">
+        <div class="filter-buttons" fxLayout="row" fxLayoutAlign="end center">      
+            <button mat-button class="text-button" id="reset" > RESET </button>
+             <!-- (click) = "onReset()" -->
+            <button mat-button class="contained-button" id="save" > OK </button>
+            <!-- (click) = "onSubmit()" -->
+        </div>
+    </div>
+</div>
+

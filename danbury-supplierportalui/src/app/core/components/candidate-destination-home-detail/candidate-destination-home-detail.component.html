@@ -1,0 +1,31 @@
+<div class="container" fxFlex="100%" fxLayout fxLayout.xs="column" fxLayoutGap="32px" fxLayoutGap.xs="4px">
+  <div fxFlex="50%" fxFlex.xs="100%" class="tile-box">
+    <div class="tile-flex home-detail auto-size">
+      <div>
+        <mat-icon class="cartus-icon skip-fill" svgIcon="location" aria-hidden="false" aria-label="Room"></mat-icon>
+      </div>
+      <div>
+        <p>
+          <span>Destination Address:</span>
+        </p>
+        <p>
+          <span class="street-address">{{ departureAddress?.streetAddress }}</span>
+        </p>
+        <p>
+          <span class="city-zip">{{ departureAddress?.city }}, {{ departureAddress?.state }}
+              {{ departureAddress?.zipcode }} {{ departureAddress?.country }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="50%" fxFlex.xs="100%" class="tile-box">
+    <div class="tile-flex home-detail">
+      <div>
+        <mat-icon class="cartus-icon skip-fill spaces" svgIcon="comment" aria-hidden="false" aria-label="Comment"></mat-icon>
+      </div>
+      <div>
+        <span class="ut-destination-home-comments">{{comments}}</span>
+      </div>
+    </div>
+  </div>
+</div>

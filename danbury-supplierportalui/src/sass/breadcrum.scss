@@ -1,0 +1,22 @@
+@import '../sass/cartus-palette.scss';
+
+.candidateprofile-nav{
+    margin-bottom: 1em;
+    font-family: 'Avenir-Medium', sans-serif;
+    font-size: 0.75em;
+    // line-height: 1.083em;
+    line-height: 1em;
+    a{
+        color: map-get($cartus-palette, 'cartus_accent_blue');
+        text-decoration: underline;
+    }
+    .current{
+        color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+        font-weight: 100;
+        &::before{
+            content: '>';
+            color: map-get($cartus-palette, 'cartus_light_gray');
+            padding:0em 0.6667em;
+        }
+    }
+}

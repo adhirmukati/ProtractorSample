@@ -1,0 +1,51 @@
+@import '~@angular/material/theming';
+
+// Always include only once per project
+@include mat-core();
+
+// Import our custom theme
+@import 'sass/app-theme.scss';
+@import 'sass/fonts.scss';
+@import 'sass/cartus-palette.scss';
+@import 'sass/app.scss';
+@import 'sass/common-styles.scss';
+@import 'sass/dialog.scss';
+@import 'sass/snackbar.scss';
+@import 'sass/mat-table.scss';
+@import 'sass/mat-table-column.scss';
+@import 'sass/breadcrum.scss';
+
+
+@mixin custom-components-theme($theme, $typography, $cartus-palette) {
+    @include app($theme, $typography, $cartus-palette);
+}
+
+@include angular-material-theme($app-theme);
+
+.ccu-theme {
+    // use our theme with angular-material-theme mixin
+    @include angular-material-theme($app-theme);
+    // include custom components theme mixin once per theme class
+    @include custom-components-theme($app-theme, $typography, $cartus-palette);
+}
+  
+html, body {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    min-width: 331px;
+    font-family: 'Avenir-Book',sans-serif;
+    font-size: 16px;
+    color: map-get($cartus-palette,'cartus-gray');
+    -moz-osx-font-smoothing: grayscale; /* Fix blurry font for Firefox Mac users connected to external displays */
+}
+
+*[fxlayoutgap] > *:last-child {
+    margin-right: 0; /* Fix for flex last column in a row having a right margin */
+}

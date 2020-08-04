@@ -1,0 +1,50 @@
+<div class="container" fxFlex="100%" fxLayout fxLayout.xs="column" fxLayoutGap="32px" fxLayoutGap.xs="4px">
+    <div fxFlex="40%" fxFlex.xs="100%" class="tile-box">
+        <div class="tile-flex">
+            <div class="box-fields">
+                <mat-form-field>
+                    <mat-label>Departure</mat-label>
+                    <input class="departure" matInput placeholder="Departure" readonly [value]="departureAdd">
+                </mat-form-field>
+            </div>
+            <div class="separator">
+                <mat-icon class="material-icons">chevron_right</mat-icon>
+            </div>
+            <div class="box-fields">
+                <mat-form-field>
+                    <mat-label>Destination:</mat-label>
+                    <input class="destination" matInput placeholder="Destination" readonly [value]="destinationAdd">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div fxFlex="25%" fxFlex.xs="100%" class="tile-box">
+        <div class="tile-flex">
+            <div class="box-fields">
+                <mat-form-field>
+                    <mat-label>Total People Moving:</mat-label>
+                    <input class="totalPeople" matInput placeholder="Total People Moving" readonly [value]="totalNumberOfPeople">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div fxFlex="35%" fxFlex.xs="100%" class="tile-box">
+        <div class="tile-flex">
+            <fieldset class="movedate">
+                <legend><span class="label-text">Estimated Move Date:</span></legend>
+                <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between">
+                    <div fxFlex="50%" class="startdate">
+                        <mat-form-field>
+                            <input class="startDate" matInput readonly [value]="estimatedMoveStartDate| date:'yyyy-MM-dd'">
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="50%" class="enddate">
+                        <mat-form-field>
+                            <input class="endDate" matInput readonly [value]="estimatedMoveEndDate| date:'yyyy-MM-dd'">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

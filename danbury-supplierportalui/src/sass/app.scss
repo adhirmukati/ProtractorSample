@@ -1,0 +1,52 @@
+@import '~@angular/material/theming';
+
+@mixin app($theme, $typography, $cartus-palette) {
+
+  // retrieve variables from theme
+  // (all possible variables, use only what you really need)
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+}
+
+
+.candidateprofile-nav a{
+
+  text-decoration: none !important;
+
+}
+body .mat-drawer-content .budget-footer .item .mat-button{
+  font-size: 16px !important;
+  padding: 14px 18px;
+}
+.budget-footer{
+  
+}
+.candidate-headercontent{
+  
+  
+}
+.budget-footer{
+  height: 2em;
+  bottom: 68px;
+  text-align: center;  
+  background: #ffffff !important;
+}
+button.contained-button{
+
+}
+.main-content {  
+    min-height: 79% !important;
+}
+.candidate-headercontent{
+  height: 80vh !important;
+}
+.tile-flex{
+  margin-left: 0px;
+}
+.ng-star-inserted .authorize-dialog .mat-dialog-content .statusBtn .mat-button{
+  font-size: 16px !important;
+}

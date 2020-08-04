@@ -1,0 +1,42 @@
+@import '../../../../sass/cartus-palette.scss';
+
+.home-detail{
+    font-size: 1em;
+    height: auto !important;
+    > div:first-child{
+        width: 6.5em;
+    }
+    > div:last-child{
+        padding-left: 0em;
+        width: calc(100% - 6.5em);
+        .mat-form-field-wrapper{
+            margin-left:0em;
+        }
+    }
+    p{
+        margin:0em;
+        text-align: left;
+        color: #767676;
+    }
+    .own-rent,
+    .type{
+        text-decoration: underline;
+        color: #000;
+    }
+    .street-address{
+        color: map-get($cartus-palette, 'cartus_gray');  
+    }
+    .city-zip{
+        color: map-get($cartus-palette, 'cartus_gray');
+        font-family: 'Avenir-Black', sans-serif;
+    }
+    .cartus-icon{
+        height: 3.625em;
+        margin-top:0.5em;
+        width: 6.5em;
+    }
+    .space {
+        padding-left: 0.4em;
+    }    
+}
+

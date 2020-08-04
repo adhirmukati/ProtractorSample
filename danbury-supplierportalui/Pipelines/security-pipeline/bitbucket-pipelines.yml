@@ -1,0 +1,29 @@
+#------------------------------------------------------------------#
+# Sample Bitbukcet PL script for Veracode SAST CI Pipeline         #
+#------------------------------------------------------------------#
+# 
+# Version: 0.7(POC)
+# Date: August 2019
+# Author: jeff.wirth@realogy.com
+#
+# REQUIRED PIPELINE VARIABLES: VERACODE_USER, VERACODE_PASS, VERACODE_APPID, VERACODE_SAND
+#
+# Please contact Realogy Security Architecture and Desing for Veracode Information.
+#
+image: python:3.7.3
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - pip
+        script: # Modify the commands below to build your repository.
+          - apt-get update
+          - apt-get -qq install zip
+          - pip install requests
+          - pip install xmltodict
+          - export VERACODE_RUN=$(date +%Y%m%d_%H%M%S)"_"$BITBUCKET_BUILD_NUMBER
+          - zip -r $VERACODE_RUN.zip "hello_world.py"
+          - python sast_pipeline.py --file $VERACODE_RUN.zip --full_ci
+          - echo "one more command"
+

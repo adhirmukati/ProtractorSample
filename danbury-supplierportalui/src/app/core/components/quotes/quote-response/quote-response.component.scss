@@ -1,0 +1,316 @@
+@import '../../../../../sass/cartus-palette.scss';
+$dark_gray: #43425D;
+.authorize-dialog-container{
+    max-width: 42.8125em !important;
+}
+
+.mat-form-field-subscript-wrapper{
+    font-size: 0.8571em;
+    .mat-form-field-hint-wrapper{
+      justify-content: flex-end;
+      .hint{
+        text-align: right;
+        font-family:'Avenir-Heavy', sans-serif;
+        font-weight: normal;
+        letter-spacing: 0;
+        color: #767676;
+        opacity: 1;
+      }
+      .mat-form-field-invalid .mat-hint {
+        display: none;
+      }
+      .mat-form-field-hint-spacer{
+        display: none;
+      }
+    }
+}
+
+.panel-heading{
+    font-size: 1rem !important; 
+    color: map-get($cartus-palette, 'cartus_accent_blue');  
+    font-family: 'Avenir-Book', sans-serif;
+    line-height: 1.5em;
+    .mat-checkbox{
+        &-label{
+            font-family: 'Avenir-Book', sans-serif;
+            line-height: 1.5em;
+        }
+        .mat-checkbox{
+            &-inner-container{
+                width: 1.125em;
+                height: 1.125em;
+            }
+            &-frame{
+                border-radius: 4px;
+                border: 1px solid map-get($cartus-palette, 'cartus_light_gray');
+            }
+            &-background{
+                border-radius: 4px;
+            }
+        }
+        &-checked{
+            .mat-checkbox{
+                &-frame{
+                    border-width: 0px;
+                }
+                &-background{
+                    background-color: map-get($cartus-palette, 'cartus_accent_blue');
+                    border-radius: 4px;
+                }
+            }
+        }
+        &-disabled{
+            .mat-checkbox{
+                &-label{
+                    color: map-get($cartus-palette, 'cartus_accent_blue');
+                }
+                &-background{
+                    background-color: map-get($cartus-palette, 'cartus_disabled_gray');
+                }
+            }
+        }
+    }
+}
+
+.authorize-dialog{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;  
+    @media screen and (max-width: 599px){
+        height: calc(100vh - 2em);
+    }
+    @media screen and (min-width: 600px){
+        max-height: calc(100vh - 2em);
+    }
+    .candidate{
+        &-dialogtitle{
+            display:flex;
+            flex-wrap: wrap;
+        }
+    }
+    .default-font{
+        font-family: 'Avenir-Book', sans-serif;
+        font-size: 1em;
+        line-height: 1.5em;
+        color: map-get($cartus-palette, 'cartus_gray');
+        font-weight: normal;
+    }
+    .mat-dialog{
+        &-content{
+            // flex: 1 0 auto;
+            flex-grow: 1;
+            margin:0em;
+            padding:1em 0em !important;
+            overflow-x: hidden;
+            overflow-y: auto;
+            max-height: unset !important;
+            &::-webkit-scrollbar {
+                width: 0.37em;
+                background-color: #F5F5F5;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: map-get($cartus-palette, 'cartus_primary_dark_brown');
+            }
+            &::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+                background-color: #fff;
+            }
+            .start-date{
+                text-align: center;
+                > .label{
+                    font-family: 'Avenir-Roman', sans-serif;
+                    color: map-get($cartus-palette, 'cartus_gray');
+                    opacity: 1;
+                    display: block;
+                }
+                .mat-form-field{
+                    width: 12.9em;
+                    @extend .default-font;
+                    &-label{
+                        color: map-get($cartus-palette, 'cartus_gray');
+                        opacity: 1;
+                        font-size: 1.25em;
+                        width: 155%;
+                    }
+                    &-flex{
+                        padding-top: 0em;
+                        align-items: stretch;
+                    }
+                    &-suffix{
+                        .mat-icon-button{
+                            height: auto !important;
+                            width: auto !important;
+                            top: 0.5em;
+                        }
+                    }
+                    &-infix{
+                        @extend .default-font;
+                        border-top: 0em;
+                        input{
+                            padding-left: 0.2em;
+                            &:read-only{
+                                color: map-get($cartus-palette, 'cartus_gray');
+                                opacity: 1;
+                            }
+                            &::placeholder{
+                                color: map-get($cartus-palette, 'cartus_disabled_gray') !important;
+                            }
+                            ::-webkit-input-placeholder {
+                                color: map-get($cartus-palette, 'cartus_disabled_gray') !important;
+                            }
+                        }
+                    }
+                }
+            }
+            .authorized-detail{
+                margin-bottom: 1.5em;
+            }
+            .note{
+                font-family: 'Avenir-Roman', sans-serif;
+                font-size: 1em;
+                line-height: 1.5625em;
+                color: $dark_gray !important;
+                margin:0em 0em 0.25em !important;
+                @media screen and (min-width: 600px){
+                    text-align: center;
+                    margin:0em 0em 1em 0em !important;
+                }
+                &.center{
+                    text-align: center;
+                }
+            }
+            .tabular{
+                .row{
+                    border: 1px solid map-get($cartus-palette, 'cartus_search_box_color');
+                    border-top:0px;
+                    padding: 0.28em 1em 0.28em 0.5em;
+                    box-sizing: border-box;
+                }
+                @extend .default-font;
+                .head{
+                    background: map-get($cartus-palette, 'cartus_search_box_color');
+                    padding: 0.28em;
+                    text-align: center;
+                }
+                dl{
+                    margin:0em;
+                    > div{
+                        width: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        @extend .row;
+                        > dt{
+                            width: 60%;
+                            margin:0em;
+                        }
+                        > dd{
+                            width: 40%;
+                            margin:0em;
+                            text-align: right;
+                        }
+                        &.right{
+                            text-align: right;
+                            justify-content: flex-end;
+                        }
+                        &.auto-size{
+                            > dt{
+                                width: auto;
+                            }
+                            > dd{
+                                width: auto;
+                            }
+                        }
+                    }
+                }
+                .payment-instruction{
+                    address{
+                        @extend .default-font;
+                        font-style: normal;
+                        line-height: 1.7em;
+                    }
+                    .box{
+                        @extend .row;
+                        @media screen and (max-width: 599px){
+                            border-top:1px solid map-get($cartus-palette, 'cartus_search_box_color');
+                        }
+                    }
+                    .bank-detail{
+                        p{
+                            color: map-get($cartus-palette, 'cartus_gray');
+                            margin:0em;
+                            line-height: 1.7em;
+                        }
+                    }
+                }
+                .action{
+                    text-align: center;
+                    margin-top: 0.7em;
+                    .mat-button{
+                        color: map-get($cartus-palette, 'cartus_primary_blue');
+                    }
+                }
+            }
+        }
+        &-actions{
+            min-height: auto;
+            padding-top: 1em;
+        }
+    }
+    .mat-button{
+        font-size: 1.25em !important;
+        &-base{
+            font-family: 'Avenir-Roman', sans-serif;
+        }
+    }
+}
+
+.mat-datepicker-content{
+    .mat-calendar-next-button,
+    .mat-calendar-period-button,
+    .mat-button-wrapper,
+    .mat-calendar-previous-button{
+        font-size: 14px !important;
+        @media screen and (max-width: 599px){
+            font-size: 16px !important;
+        }
+        @media screen and (min-width: 818px){
+            font-size: 12px !important;
+        }
+    }
+}
+
+div.estwhgt {
+    place-content: stretch flex-end !important;
+}
+
+span.units{
+    position:absolute;
+    margin-left: 10px;
+    padding: 5px;
+}
+.maticon{
+    color: black !important;
+}
+.quotematcard{
+    margin: 2px;
+}
+.storagecloseicon{
+    padding-top: 5px;
+    cursor: pointer;
+}
+.quoteform{
+    padding-right:1px;
+    @media screen and (max-width: 599px){
+        padding-right:15px;
+    }
+    .storageTitle{
+        margin-block-end: 0px;
+    }
+.quotematformfield{
+    width:70%;
+    }
+}

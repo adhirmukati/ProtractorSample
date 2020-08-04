@@ -1,0 +1,66 @@
+@import '../../../../sass/cartus-palette.scss';
+
+.mat-card-candidate-contact{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    
+}
+
+.candidate-contact-detail{
+    flex: 1 0 auto;
+}
+
+.candidate-short-name{
+    height: 2.5em;
+    width: 2.5em;
+    margin-right:0.9375em;
+    background: map-get($cartus-palette, 'cartus_light_gray'); 
+    font-family: 'Avenir-Heavy',sans-serif;
+    font-size: 1.5em;
+    line-height: 0.813;
+    border-radius: 50%;
+    color: map-get($cartus-palette, 'cartus_primary_blue_contrast'); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.candidate-user-name{
+    font-size: 1.5em;
+    font-family: 'Avenir-Heavy',sans-serif;
+    line-height: 1.5em;
+    color: map-get($cartus-palette, 'cartus_primary_dark_brown'); 
+}
+
+.contact-detail{
+    margin-top:0.6875em;
+    font-family: 'Avenir-Book',sans-serif;
+    color: map-get($cartus-palette, 'cartus_gray');
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    > div{
+        flex: 1 0 auto;
+        box-sizing: border-box;
+    }
+    > div:first-child{
+        width: 40%;
+    }
+    > div:last-child{
+        width: 60%;
+    }
+    @media screen and (max-width: 600px) {
+        > div{
+            width:100% !important;
+        }
+        > div:last-child{
+            margin-top: 0.75em;
+        }
+    }
+    img{
+        margin-right:0.5em;
+    }
+    span{
+        margin-top:0.125em;
+    }
+}

@@ -1,0 +1,12 @@
+<mat-card class="mat-card-candidate-contact" fxLayout fxLayoutAlign="start center" fxLayoutAlign.xs="start start">
+    <div class="candidate-short-name">{{candidateInitials}}</div>
+    <div class="candidate-contact-detail">
+        <div class="candidate-user-name">{{candidateName}}</div>
+        <div class="contact-detail" fxLayout fxLayout.xs="column">
+            <div fxLayout><img alt="phone-icon" src="../../../../../assets/images/candidate-assessment/baseline-phone-24px.svg" />
+                <span class="phone">{{phoneNumber}}</span></div>
+            <div fxLayout><img alt="email-icon" src="../../../../../assets/images/candidate-assessment/baseline-email-24px.svg" />
+                <span class="email">{{emailId}}</span></div>
+        </div>
+    </div>
+</mat-card>

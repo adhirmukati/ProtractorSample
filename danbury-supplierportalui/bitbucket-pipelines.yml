@@ -1,0 +1,380 @@
+image: node:12.13
+
+options:
+  max-time: 60
+
+definitions:
+  steps:
+    - step: &Build
+        name: Build the APP
+        caches:
+          - node
+        script:
+          - npm install
+          - apt-get update && apt-get install -y zip
+          - npm run build
+          - ls
+          #  - npm run e2e:mocked
+        artifacts:
+          - dist/**
+
+    - step: &UITest
+        name: UI Testing using Protractor
+        caches:
+          - node
+        script:
+          - apt-get update && apt-get install -y apt-transport-https ca-certificates curl gnupg --no-install-recommends
+          - curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && echo "deb https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
+          - apt-get update && apt-get install -y google-chrome-stable fontconfig fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-symbola fonts-noto ttf-freefont --no-install-recommends
+          - apt-get purge --auto-remove -y curl gnupg && rm -rf /var/lib/apt/lists/*
+          - npm install
+          - npm install protractor
+          #- npm update
+          - node node_modules/protractor/bin/webdriver-manager update
+          - npm run build:tst
+          - npm run e2e:setup
+          #- npm run e2e:setup
+          - npm run e2e:mocked-tst
+
+    - step: &Lint
+        name: Lint
+        caches:
+          - node
+        script: 
+          - npm run lint # TSLint
+
+    - step: &Sonar
+        name: SonarQube Scan
+        caches:
+          - node
+        script:
+          - apt-get update -y && apt-get install -y && apt-get install -y apt-utils && apt-get install -y --no-install-recommends apt-utils apt-get install -y default-jre && apt install -y iceweasel && apt install -y fonts-liberation && apt install -y libappindicator3-1 && apt install -y libxss1 && apt install -y lsb-release && apt install -y xdg-utils && apt install -y net-tools
+          - apt-get update && apt-get install -y openjdk-8-jre-headless && apt-get install -y ca-certificates-java
+          #- npm run test:coverage
+          - npm run sonar
+
+    - step: &SortSite
+        name: SortSite Scan
+        script:
+          - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_DEV01
+          - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_DEV01
+          - apt-get update && apt-get -y install python-dev
+          - curl -O https://bootstrap.pypa.io/get-pip.py
+          - python get-pip.py
+          - pip install awscli --upgrade
+          - python --version
+          - pip --help
+          - aws --version
+          - sitename="Supplier_Portal"
+          - s3bucket="car-sort-site-dev01-s3-936482"
+          - ec2id="i-0286c0fffb908eb65"
+          - aws s3 cp ./SortSite s3://$s3bucket/SortSite/ScanConfig --recursive --sse AES256
+          - aws ssm send-command --document-name "AWS-RunPowerShellScript" --targets Key=InstanceIds,Values=$ec2id --parameters commands="C:\SortSiteLogs\sortsite_scrape.ps1 -sitename $sitename -s3Bucket $s3bucket" --region us-west-2	
+
+    - step: &DeployDEV
+        name: Deploy to DEV
+        deployment: Development
+        trigger: manual
+        caches:
+        - node
+        script:
+          # Deploy
+          - "echo \"Deploying to Dev\""
+          - npm install
+          - npm run build:dev
+          - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_DEV01
+          - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_DEV01
+          - apt-get update && apt-get -y install python-dev
+          - curl -O https://bootstrap.pypa.io/get-pip.py
+          - python get-pip.py
+          - pip install awscli --upgrade
+          - python --version
+          - pip --help
+          - aws --version
+          - ls
+          - aws s3 sync ./dist/supplierportal-dev s3://supplierportaldev01.cartus.com --sse AES256 --delete
+          - echo "Deploying to S3 Development Environment"
+          - pipe: atlassian/aws-cloudfront-invalidate:0.1.2
+            variables:
+              AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+              AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+              AWS_DEFAULT_REGION: 'us-west-2'
+              DISTRIBUTION_ID: 'E297M7NPI1G237'
+
+    - step: &DeployDEV-AR
+        name: Deploy to DEV-AR
+        deployment: Dev-AR
+        trigger: manual
+        caches:
+        - node
+        script:
+          # Deploy
+          - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_DEV01
+          - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_DEV01
+          - apt-get update && apt-get -y install python-dev
+          - curl -O https://bootstrap.pypa.io/get-pip.py
+          - python get-pip.py
+          - pip install awscli --upgrade
+          - python --version
+          - pip --help
+          - aws --version
+          - ls
+          - aws s3 sync ./dist/supplierportal s3://ar-supplierportaldev01.cartus.com --sse AES256 --delete
+          - echo "Deploying to S3 Development Environment"
+          - pipe: atlassian/aws-cloudfront-invalidate:0.1.2
+            variables:
+              AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+              AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+              AWS_DEFAULT_REGION: 'us-west-2'
+              DISTRIBUTION_ID: 'E1GCX9GIRP745J'
+
+    - step: &DeployTST
+        name: Deploy to TEST
+        deployment: Test
+        trigger: manual
+        caches:
+        - node
+        script:
+          # Deploy
+          - "echo \"Deploying to Tst\""
+          - npm install
+          - npm run build:tst
+          - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_TST01
+          - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_TST01
+          - apt-get update && apt-get -y install python-dev
+          - curl -O https://bootstrap.pypa.io/get-pip.py
+          - python get-pip.py
+          - pip install awscli --upgrade
+          - python --version
+          - pip --help
+          - aws --version
+          - ls
+          - aws s3 sync ./dist/supplierportal-qa s3://supplierportaltst01.cartus.com --sse AES256 --delete
+          - echo "Deploying to S3 Test Environment"
+          - pipe: atlassian/aws-cloudfront-invalidate:0.1.2
+            variables:
+              AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+              AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+              AWS_DEFAULT_REGION: 'us-west-2'
+              DISTRIBUTION_ID: 'E28ROBR9KGJK0F'             
+
+    - step: &DeployTST-AR
+        name: Deploy to TEST-AR
+        deployment: Test-AR
+        trigger: manual
+        caches:
+        - node
+        script:
+          # Deploy
+          - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_TST01
+          - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_TST01
+          - apt-get update && apt-get -y install python-dev
+          - curl -O https://bootstrap.pypa.io/get-pip.py
+          - python get-pip.py
+          - pip install awscli --upgrade
+          - python --version
+          - pip --help
+          - aws --version
+          - ls
+          - aws s3 sync ./dist/supplierportal s3://ar-supplierportaltst01.cartus.com --sse AES256 --delete
+          - echo "Deploying to S3 Development Environment"
+          - pipe: atlassian/aws-cloudfront-invalidate:0.1.2
+            variables:
+              AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+              AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+              AWS_DEFAULT_REGION: 'us-west-2'
+              DISTRIBUTION_ID: 'E3KQORQWVJ4MKC'
+
+    - step: &DeploySTG
+        name: Deploy to Staging
+        deployment: Staging
+        trigger: manual
+        caches:
+        - node
+        script:
+          # Deploy
+          - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_STG01
+          - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_STG01
+          - apt-get update && apt-get -y install python-dev
+          - curl -O https://bootstrap.pypa.io/get-pip.py
+          - python get-pip.py
+          - pip install awscli --upgrade
+          - python --version
+          - pip --help
+          - aws --version
+          - ls
+          - aws s3 sync ./dist/supplierportal s3://supplierportalstg01.cartus.com --sse AES256 --delete
+          - echo "Deploying to S3 Staging Environment"
+          - pipe: atlassian/aws-cloudfront-invalidate:0.1.2
+            variables:
+              AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+              AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+              AWS_DEFAULT_REGION: 'us-west-2'
+              DISTRIBUTION_ID: 'E3FIYPANR9OWM7'   
+
+    - step: &DeploySTG-AR
+        name: Deploy to Staging-AR
+        deployment: Staging-AR
+        trigger: manual
+        caches:
+        - node
+        script:
+          # Deploy
+          - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_STG01
+          - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_STG01
+          - apt-get update && apt-get -y install python-dev
+          - curl -O https://bootstrap.pypa.io/get-pip.py
+          - python get-pip.py
+          - pip install awscli --upgrade
+          - python --version
+          - pip --help
+          - aws --version
+          - ls
+          - aws s3 sync ./dist/supplierportal s3://ar-supplierportalstg01.cartus.com --sse AES256 --delete
+          - echo "Deploying to S3 Staging Environment"
+          - pipe: atlassian/aws-cloudfront-invalidate:0.1.2
+            variables:
+              AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+              AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+              AWS_DEFAULT_REGION: 'us-west-2'
+              DISTRIBUTION_ID: 'E18QB9AE3DPBC7'
+
+    - step: &DeployTRN
+        name: Deploy to Training
+        deployment: Training
+        trigger: manual
+        caches:
+          - node
+        script:
+          # Deploy
+          - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_TRN01
+          - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_TRN01
+          - apt-get update && apt-get -y install python-dev
+          - curl -O https://bootstrap.pypa.io/get-pip.py
+          - python get-pip.py
+          - pip install awscli --upgrade
+          - python --version
+          - pip --help
+          - aws --version
+          - ls
+          - aws s3 sync ./dist/supplierportal s3://supplierportaltrn01.cartus.com --sse AES256 --delete
+          - echo "Deploying to S3 Training Environment"
+          - pipe: atlassian/aws-cloudfront-invalidate:0.1.2
+            variables:
+              AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+              AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+              AWS_DEFAULT_REGION: 'us-west-2'
+              DISTRIBUTION_ID: 'E35ND4LSK5OVHV'  
+
+    - step: &DeployDEM
+        name: Deploy to Demo
+        deployment: Demo
+        trigger: manual
+        caches:
+          - node
+        script:
+          # Deploy
+          - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_TRN01
+          - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_TRN01
+          - apt-get update && apt-get -y install python-dev
+          - curl -O https://bootstrap.pypa.io/get-pip.py
+          - python get-pip.py
+          - pip install awscli --upgrade
+          - python --version
+          - pip --help
+          - aws --version
+          - ls
+          - aws s3 sync ./dist/supplierportal s3://supplierportaldem01.cartus.com --sse AES256 --delete
+          - echo "Deploying to S3 Training Environment"
+          - pipe: atlassian/aws-cloudfront-invalidate:0.1.2
+            variables:
+              AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+              AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+              AWS_DEFAULT_REGION: 'us-west-2'
+              DISTRIBUTION_ID: 'E2WJ3FDMMGF4FE'   
+
+    - step: &DeployPROD
+        name: Deploy to Prod
+        deployment: Production
+        trigger: manual
+        caches:
+          - node
+        script:
+          # Deploy
+          - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PRD01
+          - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PRD01
+          - apt-get update && apt-get -y install python-dev
+          - curl -O https://bootstrap.pypa.io/get-pip.py
+          - python get-pip.py
+          - pip install awscli --upgrade
+          - python --version
+          - pip --help
+          - aws --version
+          - ls
+          - aws s3 sync ./dist/supplierportal s3://supplierportal.cartus.com --sse AES256 --delete
+          - echo "Deploying to S3 Production Environment"
+          - pipe: atlassian/aws-cloudfront-invalidate:0.1.2
+            variables:
+              AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+              AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+              AWS_DEFAULT_REGION: 'us-west-2'
+              DISTRIBUTION_ID: 'E3EZZA270819G0'  
+
+pipelines:
+  branches:
+    '{hotfix/*}':
+    - step: *Build
+    - parallel:
+      # - step: *Lint
+      #- step: *UITest
+      - step: *Sonar
+      #- step: *Veracode
+      - step: *SortSite
+    - step: *DeployDEV-AR
+    - step: *DeployTST-AR
+    - step: *DeploySTG-AR
+
+    master:
+    - step: *Build
+    - parallel:
+      # - step: *Lint
+      #- step: *UITest
+      - step: *Sonar
+      #- step: *Veracode
+      - step: *SortSite
+    - step: *DeployTRN
+    - step: *DeployDEM
+    - step: *DeployPROD
+
+    '{feature/*,bugfix/*,*}':
+       #- step: *Build
+      #- parallel:
+      # - step: *Lint
+       - step: *UITest
+      #- step: *Sonar
+      #- step: *Veracode
+      #- step: *SortSite
+     #- step: *DeployDEV
+     #- step: *UITest
+
+    develop:
+    - step: *Build
+    - parallel:
+      # - step: *Lint
+      #- step: *UITest
+      - step: *Sonar
+      #- step: *Veracode
+      - step: *SortSite
+    - step: *DeployDEV
+    - step: *DeployTST
+
+    '{release/*}':
+    - step: *Build
+    - parallel:
+      # - step: *Lint
+      #- step: *UITest
+      - step: *Sonar
+      #- step: *Veracode
+      - step: *SortSite
+    - step: *DeployTST
+    - step: *DeploySTG

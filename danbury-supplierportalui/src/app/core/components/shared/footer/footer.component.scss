@@ -1,0 +1,100 @@
+@import '../../../../../sass/cartus-palette.scss';
+
+.app-footer{
+    width: 100%;
+    display: block;
+    z-index: 1000;
+    margin-top: auto;
+    //  position: fixed;
+    // bottom: 0;
+}
+footer{    
+    // position: fixed; 
+    // bottom: 0;
+    height: 3em;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    font-family: 'Avenir-Book', sans-serif;
+    color: map-get($cartus-palette, 'cartus_footer_text_color');
+    padding: 0.75em 0 0.875em;
+    margin-top: 1em;
+    @media screen and (max-width: 768px) {
+        height: 5.25em;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .footer-link{
+        text-align: end;
+        padding-right: 2.5em;
+        @media screen and (max-width: 768px) {
+            text-align: center;
+            padding-left: 0em;
+            padding-bottom: 1em;
+        }
+        .link{
+            &:first-child{
+                &::after{
+                    content:'|';
+                    padding: 0 1em;
+                }
+            }
+            &:last-child{
+                &::before{
+                    content:'|';
+                    padding: 0 1em;
+                }
+            }
+            a{
+                color: map-get($cartus-palette, 'cartus_accent_blue1');
+                text-decoration: underline;
+            }
+        }
+    }
+    .copyright{
+        padding-left: 2.5em;
+    }
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+@media screen and (max-width: 768px) {
+    .column{
+        width:100%;
+        text-align: center;
+    }
+    footer{
+        height: auto !important;
+    }
+    footer .copyright{
+        padding-left:0 !important;
+        margin-bottom: 3%;
+    }
+    .some-page-wrapper .row{
+        flex-wrap: wrap;
+        width:100%;
+        flex-direction: column;
+        
+    }
+    .contact{
+        display: block;
+        width: 100%;
+    }
+    footer .footer-link .link:last-child::before{
+        display:none !important;
+    }
+    footer .footer-link{
+        padding-right:0 !important;
+    }
+}

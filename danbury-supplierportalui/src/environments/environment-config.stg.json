@@ -1,0 +1,45 @@
+{
+  "environment": "developer",
+  "api": {
+    "host": "alphaapistg01.cartus.com",
+    "port": "",
+    "protocol": "https",
+    "base_url": ""
+  },
+  "costModel": {
+    "host": "costmodelstg01.cartus.com",
+    "port": "",
+    "protocol": "https",
+    "base_url": ""
+  },
+  "accessManagement": {
+     "host": "accessmgmtstg01.cartus.com",
+     "port": "",
+     "protocol": "https",
+     "base_url": ""
+   },
+   "processAPI": {
+    "host": "vendorprocessstg01.cartus.com",
+    "port": "",
+    "protocol": "https",
+    "base_url": "",
+    "from_date":"2019-12-02T09:43:34.211Z"
+  },
+  "workOrderAPI": {
+    "host": "apigwusw2stg01.cartus.com",
+    "port": "",
+    "protocol": "https",
+    "base_url": ""
+  },
+  "google_analytics": {
+    "key": "UA-119441655-23"
+  },
+  "login": "https://gostg01.cartus.com/",
+  "logout": "http://loginstg.cartus.com/#/logout",
+  "cartusOnline": "https://onlinetst.cartus.com/Public#/context",
+  "atlas": "https://atlastst.cartus.com/setup.aspx",
+  "byPassLogin": "false",
+  "byPassAuthorization": false,
+  "enableAppDynamics": true
+
+}

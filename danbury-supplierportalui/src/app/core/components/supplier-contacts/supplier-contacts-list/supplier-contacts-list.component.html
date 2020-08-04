@@ -1,0 +1,84 @@
+
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+
+<section class="content_table">
+  <div class="totalQuoteReq">{{ totalQuoteRequest }} Supplier Contacts
+    <mat-icon (click)="openEditSupplierContactDialog(true)" class="addbtn">add_circle</mat-icon>
+  </div>
+  <div>
+    <section class="mat-elevation-z8">
+      <div *ngIf="supplierContactsRequestData.length>0 && dataSource.filteredData.length>0" style="overflow:auto;">
+        <table mat-table [dataSource]="dataSource" aria-describedby="table-candidates" matSort [matSortActive]="sortBy"
+          matSortDirection="asc" (matSortChange)="sortData($event)">
+
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null"
+                            [checked]="selection.isSelected(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <!-- Full Name Column -->
+          <ng-container matColumnDef="fullName" sticky>
+            <th id="" mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
+            <td mat-cell *matCellDef="let element" class="cLinks" [ngClass]="{highlighted: selection.isSelected(row)}"
+              (click)="openEditSupplierContactDialog(false, element)">
+              <span class="text-as-link" [innerHTML]="element.fullName"></span>
+            </td>
+          </ng-container>
+          <!-- order Column -->
+          <ng-container matColumnDef="email">
+            <th id='' mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+            <td mat-cell *matCellDef="let element">
+              <span [innerHTML]="(element.email != undefined || null) ? (element.email ) : '-'"></span><br />
+            </td>
+          </ng-container>
+
+          <!-- Destination Column -->
+          <ng-container matColumnDef="supplier">
+            <th id="" mat-header-cell *matHeaderCellDef mat-sort-header>Supplier</th>
+            <td mat-cell *matCellDef="let element">
+              <span [innerHTML]="(element.supplier.supplierId != undefined || element.supplier.supplierId != null) ? element.supplier.supplierName : '-'"></span><br/>
+              <span class="listStatusDate" [innerHTML]="(element.supplier.supplierId != undefined || element.supplier.supplierId != null) ? ('Supplier&nbsp;#:&nbsp;' + (element.supplier.supplierId)) : ''"></span>
+            </td>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th id="" mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let element">
+              <span [innerHTML]="(element.status.statusName != undefined || element.status.statusName != null) ? element.status.statusName : '-'"></span><br/>
+              <span class="listStatusDate" [innerHTML]="(element.status.statusName != undefined || element.status.statusName != null) ? ('on&nbsp;' + (element.status.date | date: 'yyyy-MM-dd')) : ''"></span>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            (click)="row.status === 'Ready for Review'||row.status === 'Payment Pending' ?navigateToBudgetSummary(row.candidateId):return;"
+            [ngClass]="{highlighted: selection.isSelected(row)}"></tr>
+        </table>
+      </div>
+      <div [hidden]="!(supplierContactsRequestData.length>0 && dataSource.filteredData.length>0)">
+        <mat-paginator [length]="pageInfo.totalCount" [pageSize]="pageInfo.pageSize" [pageSizeOptions]="[5, 10, 20]"
+          (page)="onPagination($event)"></mat-paginator>
+      </div>
+    </section>
+  </div>
+  <div [hidden]="supplierContactsRequestData.length>0 && dataSource.filteredData.length>0" class="invalidData">
+    No records found
+  </div>
+</section>
+<div *ngIf="selection.selected.length > 0" class="candidate-highlight-whitebg">
+  <button mat-button class="mat-button contained-button" (click)="inactiveSupplierContacts()" id="withdrawBtn">Set
+    <span *ngIf="selection.selected.length>1" class=" cost-model-btn-txt">{{selection.selected.length}}&nbsp;</span>
+    <span class=" cost-model-btn-txt">to Inactive</span>
+  </button>
+</div>

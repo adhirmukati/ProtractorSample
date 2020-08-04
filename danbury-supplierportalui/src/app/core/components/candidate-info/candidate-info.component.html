@@ -1,0 +1,14 @@
+<div class="container" fxLayout fxLayout.xs="column" fxLayoutGap="32.5px">
+    <div fxFlex="32%" fxFlex.md="40%" fxFlex.xs="100%" class="item item-1 candidate-review-field">
+        <mat-form-field>
+            <mat-label>Order #:</mat-label>
+            <input class="businessUnit" matInput readonly [value]="orderReference?orderReference:' '">
+        </mat-form-field>
+    </div>
+    <div fxFlex="32%" fxFlex.md="40%" fxFlex.xs="100%" class="item item-1 candidate-review-field">
+        <mat-form-field>
+            <mat-label>Company:</mat-label>
+            <input class="level" matInput readonly [value]="company?company:' '">
+        </mat-form-field>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+@import '../../../../../sass/cartus-palette.scss';
+
+.totalQuoteReq {
+    padding: 15px;
+    background: white;
+    color: map-get($cartus-palette, 'cartus_action_button');
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.addbtn {
+    float: right;
+    cursor: pointer;
+}

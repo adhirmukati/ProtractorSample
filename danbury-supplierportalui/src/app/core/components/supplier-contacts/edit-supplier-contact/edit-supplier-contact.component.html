@@ -1,0 +1,72 @@
+<div class="authorize-dialog">
+  <div mat-dialog-title disableTypography fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px"
+    fxLayoutGap.xs="0em">
+    <div class="candidate-dialogtitle">
+      <span>{{ isEmptySupplierInfo ? 'Add Supplier Contact' : 'Edit Supplier Contact' }}</span>
+    </div>
+    <a class="close-icon" id="close_icon" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </a>
+  </div>
+  <div mat-dialog-content>
+    <form fxLayout="column" class="middle-section form-group" [formGroup]="editsupplierContact" (ngSubmit)="addOrUpdateSupplierContact()" novalidate>
+      <div  class="form-group middle-section" >
+        <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column"
+          fxLayoutGap.xs="0em">
+          <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+            <mat-form-field>
+              <input matInput type="text" class="form-control"  formControlName="firstname" placeholder="First Name"/> 
+              <mat-error>You must enter first name</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50%" fxLayout.xs="column" fxFlex.xs="100%">
+            <mat-form-field>
+              <input matInput type="text" class="form-control"  formControlName="lastname" placeholder="Last Name"/> 
+              <mat-error>You must enter last name</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayout.xs="column"
+        fxLayoutGap.xs="0em">
+        <div class="middle-section">  
+          <div fxFlex="100%" fxLayout.xs="column" fxFlex.xs="100%">
+            <mat-form-field>
+              <input matInput type="text" class="form-control"  formControlName="emailAddress" placeholder="Email Address"/> 
+              <mat-error *ngIf="editsupplierContact && editsupplierContact.controls['emailAddress'].hasError('required')">You must enter email address</mat-error>
+              <mat-error *ngIf="editsupplierContact && editsupplierContact.controls['emailAddress'].hasError('email')">You must valid email address</mat-error>
+            </mat-form-field>
+          </div>
+        </div>   
+      </div>
+      <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayout.xs="column"
+        fxLayoutGap.xs="0em">
+        <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+          <mat-form-field>
+            <mat-label>Supplier</mat-label>
+            <mat-select class="form-control" [(value)]="selected" formControlName="supplier">
+              <mat-option [value]="supplier" *ngFor="let supplier of Supplier">{{ supplier }}</mat-option>
+            </mat-select>
+          </mat-form-field> 
+        </div>
+        <div fxFlex="50%" fxLayout="column-reverse" fxLayoutALign="space-between" fxLayoutGap="1em" fxFlex.xs="100%">
+          <mat-form-field> 
+            <input matInput type="text" formControlName="phoneNumber" placeholder="Mobile Phone Number"/>
+            <mat-hint align="end" class="hint">Mobile # required to recieve text messeges</mat-hint>
+            <mat-error *ngIf="editsupplierContact && editsupplierContact.controls['phoneNumber'].hasError('required')">You must enter phone number</mat-error>
+            <mat-error *ngIf="editsupplierContact && editsupplierContact.controls['phoneNumber'].hasError('pattern')">You must enter valid phone number</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div mat-dialog-actions>
+        <div class="statusBtn">
+          <button class="uppercase" mat-button (click)="close()">Cancel</button>
+          <button type="submit" *ngIf="!isEmptySupplierInfo" [disabled]="editsupplierContact.invalid" mat-button>Set to Inactive</button>
+          <button type="submit" *ngIf="!isEmptySupplierInfo" mat-button class="mat-button contained-button" [disabled]="editsupplierContact.invalid">Save Updates</button>
+          <button type="submit" *ngIf="isEmptySupplierInfo" [disabled]="editsupplierContact.invalid" mat-button>Save Draft</button>
+          <button type="submit" *ngIf="isEmptySupplierInfo" mat-button class="mat-button contained-button" [disabled]="editsupplierContact.invalid">Send Invite</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

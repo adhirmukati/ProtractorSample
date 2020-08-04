@@ -1,0 +1,234 @@
+@import '../sass/cartus-palette.scss';
+/* Material Common Table Styles */
+
+.mat-table{
+    width:100%;
+    .mat-sort-header-container{
+        button{
+            font-family: 'Avenir-Heavy',sans-serif;
+            font-weight: 100;
+            font-size: 1em !important;
+            white-space: nowrap;
+        }
+    }
+    tr.mat-header-row{
+      height:2.5em;
+    }
+    th.mat-header-cell{
+       color: map-get($cartus-palette, 'cartus_gray');
+        border-right-color: map-get($cartus-palette, 'cartus_secondary_gray' );
+        padding: 0.1875em 0.625em 0 0.5em;        
+        vertical-align: middle;
+        font-weight: normal;
+        font-family: 'Avenir-Heavy',sans-serif;
+        font-size: 0.75em; 
+        border-bottom-color: map-get($cartus-palette, 'cartus_secondary_gray');
+        white-space: nowrap;
+    }
+
+    td.mat-cell{
+        font-size:1em;
+        color: map-get($cartus-palette, 'cartus_gray');
+        padding: 0.1875em 0.625em 0.1875em 0.5em;
+        line-height: 1.25em;
+        vertical-align: middle;
+        font-family: 'Avenir-Book',sans-serif;
+        .small{
+          font-size: 0.75em;
+        }
+    }
+
+    .mat-checkbox-frame {
+        border-width:1px;
+        border-radius:4px;
+    }
+    .mat-checkbox-checked,
+    .mat-checkbox-indeterminate{
+      &.mat-accent{
+        .mat-checkbox-background{
+          background-color: map-get($cartus-palette, 'cartus_primary_blue');
+          border: 1px solid #808495;
+        }
+      }
+    }
+    .mat-row:hover {
+        background-color:map-get($cartus-palette, 'cartus_hover_tint');
+        cursor: pointer;
+    }
+    a {
+        text-decoration: underline;
+    }
+@media screen and (max-width:600px){
+    tr.mat-header-row{
+        //height:63px;
+        text-align: left;
+    }
+
+}
+}
+/* Material Table Design for Small Screens*/
+
+@media only screen and (max-width: 400px) {
+  
+    th.mat-column-select, td.mat-column-select {
+      min-width: 2.1em;
+      max-width: 4em;
+      padding-right: 0.5em;
+    }
+    
+    th.mat-column-fullname, td.mat-column-fullname {
+      min-width: 2.1em;
+      max-width: 9em;
+      padding-left: 0.5em;
+    }
+    
+    .mat-table-sticky:nth-child(2) {
+      border-right: 1px solid map-get($cartus-palette, 'cartus_pale_gray');
+    }
+    
+    .mat-table-sticky:last-child {
+      border-left: 1px solid map-get($cartus-palette, 'cartus_pale_gray');
+    }
+    
+    }
+    
+     /* Material Table Design for Medium Screens*/
+
+    @media only screen 
+      and (min-width: 400px) {
+      
+        td.mat-column-select {
+          min-width: 2.1em;
+          max-width: 4em;
+          padding-right: 0.5em;
+        }
+        
+        th.mat-column-fullname, td.mat-column-fullname,
+        th.mat-column-status, td.mat-column-status {
+          min-width: 2.1em;
+          max-width: 6em;
+          padding-left: 0.5em;
+          word-wrap: break-word;
+        }
+        .mat-table-sticky:nth-child(2) {
+            border-right: 1px solid map-get($cartus-palette, 'cartus_pale_gray');
+          }
+          
+          .mat-table-sticky:last-child {
+            border-left: 1px solid map-get($cartus-palette, 'cartus_pale_gray');
+          }
+   
+      }
+      @media only screen 
+      and (min-width: 401px) and (max-width:600px) {
+        td.mat-column-select {
+            padding-right: 0.5em;
+          }
+          th.mat-column-fullname, td.mat-column-fullname {
+            padding-left: 0.5em;
+          }
+          .notification-important{
+            span{
+              &.ready-icon{
+                display: flex;
+                width: 6em;
+                a{
+                  padding-top: .2em;
+                }
+              }
+            }
+          }
+      }
+      @media only screen 
+      and (min-width: 1200px ) {
+      
+        td.mat-column-select {
+         width:2em;
+          padding-right: 0.5em;
+        }
+        
+        th.mat-column-fullname, td.mat-column-fullname,
+        th.mat-column-status, td.mat-column-status {
+            min-width: 4em;
+            padding-left: 0.5em;
+        }
+        .mat-table-sticky:nth-child(2) {
+            border-right:none;
+          }
+          
+          .mat-table-sticky:last-child {
+            border-left: none;
+          }
+      
+      }
+
+@media screen and (min-width:768px) and (max-width:1024px){
+    .mat-table th.mat-header-cell{
+        line-height:14px;
+    }
+}
+
+/* Alpha Page Content Table Style */
+
+.content_table{
+    td.mat-cell{
+      p{
+        margin:0
+      }
+      &.mat-column-empName{
+        color: map-get($cartus-palette, 'cartus_link_color');
+        em{
+          font-style: normal;
+          font-size: 0.875em;
+        }
+      }
+      &.mat-column-movePhase{
+        color: map-get($cartus-palette, 'cartus_link_color');
+      }
+    }
+  
+    .mat-paginator-container{
+      position: relative;
+     
+      .mat-paginator-page-size{
+        position:relative;
+        right:0;
+      }
+      .mat-paginator-range-actions{
+        position:relative;
+        padding-left:2.5em;  
+       .mat-paginator-range-label{
+          margin: 0;
+          position: static;
+          left: 0;
+          font-size: 1em;
+          font-family: 'Avenir-Book',sans-serif;
+          padding-top: 0.3125em;     
+        }
+        .mat-paginator-navigation-previous{
+          margin-right: auto; 
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
+    }
+    .mat-paginator-page-size-select{
+        width:2.8125em;
+        padding-top:.2em;
+    }
+    .mat-table{
+  
+     
+        .notification-important {
+          .mat-icon {
+            color: map-get($cartus-palette, 'cartus_warning_color');
+            vertical-align: bottom;
+          }
+          a {
+            color: map-get($cartus-palette, cartus_accent_blue);
+            text-decoration: none;
+          }
+        }
+    }
+  }

@@ -1,0 +1,21 @@
+@import '../../../../sass/cartus-palette.scss';
+
+.candidate-review-field{
+    .mat-form-field{
+         margin-bottom: -1.25em;
+         font-family: 'Avenir-Book',sans-serif !important;
+         font-size: 1em !important;
+         color: map-get($cartus-palette, cartus_gray ) !important;
+         width: 100%;
+         &-wrapper{
+             margin:0em 0.5em;
+         }
+         &-flex{
+             background-color: transparent !important;
+             padding-left:0em !important;
+         }
+         &-infix{
+             width: 100%;
+         }
+    }
+}

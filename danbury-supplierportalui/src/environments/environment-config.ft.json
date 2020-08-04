@@ -1,0 +1,38 @@
+{
+  "environment": "developer",
+  "api": {
+    "host": "apift.cartus.com",
+    "port": "443",
+    "protocol": "https",
+    "base_url": "/api/"
+  },
+  "accessManagement": {
+     "host": "accessmgmtdev01.cartus.com",
+     "port": "",
+     "protocol": "https",
+     "base_url": ""
+   },
+   "processAPI": {
+    "host": "vendorprocessstg01.cartus.com",
+    "port": "",
+    "protocol": "https",
+    "base_url": "",
+    "from_date":"2019-12-02T09:43:34.211Z"
+  },
+  "workOrderAPI": {
+    "host": "apigwusw2stg01.cartus.com",
+    "port": "",
+    "protocol": "https",
+    "base_url": ""
+  },
+  "google_analytics": {
+    "key": "UA-119441655-21"
+  },
+  "login": "http://localhost:4203/",
+  "logout": "http://loginft.cartus.com/#/logout",
+  "cartusOnline": "https://onlineft.cartus.com/Public#/context",
+  "atlas": "https://atlasft.cartus.com/setup.aspx",
+  "byPassLogin":"false",
+  "byPassAuthorization": false,
+  "enableAppDynamics": true
+}

@@ -1,0 +1,38 @@
+{
+  "environment": "developer",
+  "api": {
+    "host": "supplierportaldev01.cartus.com",
+    "port": "",
+    "protocol": "https",
+    "base_url": ""
+  },
+  "costModel": {
+    "host": "costmodeldev01.cartus.com",
+    "port": "",
+    "protocol": "https",
+    "base_url": ""
+  },
+  "accessManagement": {
+     "host": "accessmgmtdev01.cartus.com",
+     "port": "",
+     "protocol": "https",
+     "base_url": ""
+   },
+   "processAPI": {
+      "host": "vendorprocessdev01.cartus.com",
+      "port": "",
+      "protocol": "https",
+      "base_url": "",
+      "from_date":"2019-12-02T09:43:34.211Z"
+    },
+  "google_analytics": {
+    "key": "UA-119441655-21"
+  },
+  "login": "https://godev01.cartus.com/#/login?appId=4",
+  "logout": "https://godev01.cartus.com/#/logout?appId=4",
+  "cartusOnline": "https://onlinedev.cartus.com/Public#/context",
+  "atlas": "https://atlasdev.cartus.com/setup.aspx",
+  "byPassLogin":"false",
+  "byPassAuthorization": false,
+  "enableAppDynamics": false
+}

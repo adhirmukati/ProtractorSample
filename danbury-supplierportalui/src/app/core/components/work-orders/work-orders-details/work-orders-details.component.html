@@ -1,0 +1,290 @@
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+
+<!--Section To Candidate Profiles-->
+<div class="candidateprofile-nav">
+    <a [routerLink]="['/work-orders']">Work Orders</a><span
+        class="current">{{candidateName}}</span>
+</div>
+<div class="budget-container">
+    <div class="budget-content-container">
+        <app-candidate-contact-info *ngIf="candidateContactInfo" [candidateContactInfo]="candidateContactInfo">
+        </app-candidate-contact-info>
+
+        <mat-accordion class="candidate-review-panel candidate-info-panel" multi="true">
+            <!--Candidate Details starts-->
+            <mat-expansion-panel class="candidate-detail">
+                <mat-expansion-panel-header [collapsedHeight]="matExpansionHeaderHeight"
+                    [expandedHeight]="matExpansionHeaderHeight">
+                    <span class="panel-heading">Details</span>
+                </mat-expansion-panel-header>
+                <mat-panel-description>
+                    <app-candidate-info *ngIf="candidateInfo" [candidateInfo]="candidateInfo" class="full-stretch">
+                    </app-candidate-info>
+                </mat-panel-description>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-accordion class="candidate-review-panel" multi="true">
+            <!--Move Details starts-->
+            <mat-expansion-panel class="move-detail-panel">
+                <mat-expansion-panel-header [collapsedHeight]="'auto'" [expandedHeight]="matExpansionHeaderHeight"
+                    fxLayout fxLayout.xs="row" fxLayoutGap="10px">
+                    <div fxFlex="34%" class="panel-heading">Move Details</div>
+                    <div *ngIf="candidateMoveInfo" fxFlex="66%" class="header-right-node move hide-on-expand">
+                        <span>{{candidateMoveInfo.departure.fullAddress}}</span>
+                        <mat-icon class="material-icons arrow">chevron_right</mat-icon>
+                        <span>{{candidateMoveInfo.destination.fullAddress}}</span>
+                    </div>
+                </mat-expansion-panel-header>
+                <mat-panel-description class="remove-margin">
+                    <app-candidate-move-info *ngIf="candidateMoveInfo" [candidateMoveInfo]="candidateMoveInfo"
+                        class="full-stretch"></app-candidate-move-info>
+                </mat-panel-description>
+            </mat-expansion-panel>
+            <!--Departure & Home Details starts-->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header [collapsedHeight]="matExpansionHeaderHeight"
+                    [expandedHeight]="matExpansionHeaderHeight" fxLayout fxLayout.xs="row" fxLayoutGap="10px">
+                    <div fxFlex="80%" class="panel-heading">Departure Home Details</div>
+                </mat-expansion-panel-header>
+                <mat-panel-description class="remove-margin">
+                    <app-candidate-departure-home-detail *ngIf="candidateDepartureInfo"
+                        [candidateDepartureInfo]="candidateDepartureInfo" class="full-stretch">
+                    </app-candidate-departure-home-detail>
+                </mat-panel-description>
+            </mat-expansion-panel>
+            <!--Destination & Home Details starts-->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header [collapsedHeight]="matExpansionHeaderHeight"
+                    [expandedHeight]="matExpansionHeaderHeight" fxLayout fxLayout.xs="row" fxLayoutGap="10px">
+                    <div fxFlex="80%" class="panel-heading">Destination Home Details</div>
+                </mat-expansion-panel-header>
+                <mat-panel-description class="remove-margin">
+                    <app-candidate-destination-home-detail *ngIf="candidateDestinationInfo"
+                    [candidateDestinationInfo]="candidateDestinationInfo" class="full-stretch"></app-candidate-destination-home-detail>
+                </mat-panel-description>
+            </mat-expansion-panel>
+            <!--Quote Response Details-->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header [collapsedHeight]="matExpansionHeaderHeight"
+                    [expandedHeight]="matExpansionHeaderHeight">
+                    <span class="panel-heading">Quote Response Details</span>
+                </mat-expansion-panel-header>
+                
+                <mat-panel-description class="remove-margin">
+                    <app-candidate-quote-info [quoteResponse]="quoteResponseInfo"  class="full-stretch">
+                    </app-candidate-quote-info>
+                </mat-panel-description>
+            </mat-expansion-panel>
+            <!--Agent Information-->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header [collapsedHeight]="matExpansionHeaderHeight"
+                    [expandedHeight]="matExpansionHeaderHeight">
+                    <span class="panel-heading">Agent Contact </span>
+                </mat-expansion-panel-header> 
+                <mat-panel-description class="remove-margin">
+                    <app-candidate-agent-info class="full-stretch" [agentInfo]="agentInfo" [isEmptyAgentInfo]="isEmptyAgentInfo" [referenceNumber]="this.quoteResponseInfo?.referenceNumber"></app-candidate-agent-info>      
+                </mat-panel-description>                    
+            </mat-expansion-panel>
+            <!--Key dates Information-->
+            <mat-expansion-panel *ngIf="!isEmptyAgentInfo">
+                <mat-expansion-panel-header [collapsedHeight]="matExpansionHeaderHeight"
+                    [expandedHeight]="matExpansionHeaderHeight">
+                    <span class="panel-heading">Key Dates</span>
+                </mat-expansion-panel-header>
+                <div>
+                    <div class="emptyKeyDatesInfo" *ngIf="isKeyDateEmpty">
+                        <span>No key dates have been provided yet.</span><br />
+                        <a (click)="editKeys()" class="editKeysBtn">Edit Key Dates</a>
+                    </div>
+                    <div *ngIf="!isKeyDateEmpty" class="row wrap custom-top-margin custom-bottom-margin" fxLayout="row wrap" fxLayoutAlign="stretch"
+                      fxLayout.xs="column" fxLayoutGap.xs="1em">     
+                      <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex="100%">
+                        <div fxLayout="column" fxFlex="50%" class="Harwidth">                          
+                          <div class="harshiniShadow">Estimates</div>
+                          <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayoutGap.xs="0.1em">
+                            <div fxFlex="50%" fxLayoutAlign="start" fxFlex.xs="100%">
+                              <div class="tile-flex">
+                                <fieldset class="movedate">
+                                    <legend><span class="label-text">Estimated Pack Date Range</span></legend>
+                                    <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between">
+                                        <div fxFlex="50%" class="startdate">
+                                            <mat-form-field>
+                                                <input class="startDate" matInput readonly [value]="estimatedKeyDates?.EstimatedPackStartDate| date:'yyyy-MM-dd'">
+                                            </mat-form-field>
+                                        </div>
+                                        <div fxFlex="50%" class="enddate">
+                                            <mat-form-field>
+                                                <input class="endDate" matInput readonly [value]="estimatedKeyDates?.EstimatedPackEndDate| date:'yyyy-MM-dd'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                              </div>
+                            </div>
+                            <div fxFlex="50%" fxLayoutAlign="start" fxFlex.xs="100%">
+                              <div class="tile-flex">
+                                <fieldset class="movedate">
+                                    <legend><span class="label-text">Estimated Load Date Range</span></legend>
+                                    <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between">
+                                        <div fxFlex="50%" class="startdate">
+                                            <mat-form-field>
+                                                <input class="startDate" matInput readonly [value]="estimatedKeyDates?.EstimatedLoadStartDate| date:'yyyy-MM-dd'">
+                                            </mat-form-field>
+                                        </div>
+                                        <div fxFlex="50%" class="enddate">
+                                            <mat-form-field>
+                                                <input class="endDate" matInput readonly [value]="estimatedKeyDates?.EstimatedLoadEndDate| date:'yyyy-MM-dd'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                              </div>
+                            </div>
+                          </div>
+                          <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayoutGap.xs="0.1em">
+                            <div fxFlex="50%" fxLayoutAlign="start" fxFlex.xs="100%">
+                              <div class="tile-flex">
+                                <fieldset class="movedate">
+                                    <legend><span class="label-text">Estimated Storage In Date Range</span></legend>
+                                    <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between">
+                                        <div fxFlex="50%" class="startdate">
+                                            <mat-form-field>
+                                                <input class="startDate" matInput readonly [value]="estimatedKeyDates?.EstimatedStorageInStartDate| date:'yyyy-MM-dd'">
+                                            </mat-form-field>
+                                        </div>
+                                        <div fxFlex="50%" class="enddate">
+                                            <mat-form-field>
+                                                <input class="endDate" matInput readonly [value]="estimatedKeyDates?.EstimatedStorageInEndDate| date:'yyyy-MM-dd'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                              </div>
+                            </div>
+                            <div fxFlex="50%" fxLayoutAlign="start" fxFlex.xs="100%">
+                              <div class="tile-flex">
+                                <fieldset class="movedate">
+                                    <legend><span class="label-text">Estimated Storage Out Date Range</span></legend>
+                                    <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between">
+                                        <div fxFlex="50%" class="startdate">
+                                            <mat-form-field>
+                                                <input class="startDate" matInput readonly [value]="estimatedKeyDates?.EstimatedStorageOutStartDate| date:'yyyy-MM-dd'">
+                                            </mat-form-field>
+                                        </div>
+                                        <div fxFlex="50%" class="enddate">
+                                            <mat-form-field>
+                                                <input class="endDate" matInput readonly [value]="estimatedKeyDates?.EstimatedStorageOutEndDate| date:'yyyy-MM-dd'">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                              </div>
+                            </div>
+                          </div>
+                          <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayoutGap.xs="0.1em">
+                            <div fxFlex="50%" fxLayoutAlign="start" fxFlex.xs="100%">
+                              <div class="tile-flex harblock">
+                                <fieldset class="movedate">
+                                  <legend><span class="label-text">Estimated Delivery Date Range</span></legend>
+                                
+                                  <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between">
+                                    <div fxFlex="50%" class="startdate">
+                                      <mat-form-field>
+                                        <input class="startDate" matInput readonly
+                                          [value]="estimatedKeyDates?.EstimatedDeliveryDate| date:'yyyy-MM-dd'">
+                                      </mat-form-field>
+                                    </div>
+                                    <div fxFlex="50%" class="enddate">
+                                      <mat-form-field>
+                                        <input class="endDate" matInput readonly
+                                          [value]="estimatedKeyDates?.EstimatedDeliveryEndDate| date:'yyyy-MM-dd'">
+                                      </mat-form-field>
+                                    </div>
+                                  </div>
+                                </fieldset>
+                              </div>
+                            </div>
+                            <div fxFlex="50%" fxLayoutAlign="start" fxFlex.xs="100%">
+                            </div>
+                          </div>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%" class="Harwidth Harwidth2" >                          
+                            <div  class="harshiniShadow harshiniShadow2">Actuals</div>
+                            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayoutGap.xs="0.1em">
+                              <div fxFlex="100%" fxLayoutAlign="start" fxFlex.xs="100%">
+                                <div class="tile-flex">
+                                  <legend><span class="label-text">Actual Pack Date</span></legend>
+                                    <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between">
+                                      <div>
+                                        <mat-form-field class="actuals-hack">
+                                          <input matInput readonly [value]="actualKeyDates?.ActualPackDate| date:'yyyy-MM-dd'">
+                                        </mat-form-field>
+                                      </div>                                        
+                                    </div>
+                                </div>
+                              </div>
+                              <div fxFlex="100%" fxLayoutAlign="start" fxFlex.xs="100%">
+                                <div class="tile-flex">
+                                  <legend><span class="label-text">Actual Load Date</span></legend>
+                                    <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between">
+                                        <div>
+                                            <mat-form-field class="actuals-hack">
+                                                <input matInput readonly [value]="actualKeyDates?.ActualLoadDate| date:'yyyy-MM-dd'">
+                                            </mat-form-field>
+                                        </div>                                            
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayoutGap.xs="0.1em">
+                              <div fxFlex="50%" fxLayoutAlign="start" fxFlex.xs="100%">
+                                <div class="tile-flex">
+                                  <fieldset class="movedate">
+                                    <legend><span class="label-text">Storage Date Range</span></legend>
+                                    <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between">
+                                      <div fxFlex="50%" class="startdate">
+                                        <mat-form-field>
+                                            <input class="startDate" matInput readonly [value]="actualKeyDates?.StorageInDate| date:'yyyy-MM-dd'">
+                                        </mat-form-field>
+                                      </div>
+                                      <div fxFlex="50%" class="enddate">
+                                        <mat-form-field>
+                                            <input class="endDate" matInput readonly [value]="actualKeyDates?.StorageOutDate| date:'yyyy-MM-dd'">
+                                        </mat-form-field>
+                                      </div>
+                                    </div>
+                                  </fieldset>
+                                </div>
+                              </div>
+                              <div fxFlex="50%" fxLayoutAlign="start" fxFlex.xs="100%" class="actual-delivery">     
+                                <div class="tile-flex">
+                                  <legend><span class="label-text">Actual Delivery Date</span></legend>
+                                  <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between">
+                                    <div>
+                                      <mat-form-field class="actuals-hack">
+                                        <input matInput readonly [value]="actualKeyDates?.ActualDeliveryDate| date:'yyyy-MM-dd'">
+                                      </mat-form-field>
+                                    </div>                                            
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                  
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item edit" *ngIf="!isKeyDateEmpty">
+                        <button mat-button class="mat-button contained-button" (click)="editKeys()" id="Authorize">
+                            Edit Details
+                        </button>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+                   
+        </mat-accordion>
+        
+    </div>
+</div>

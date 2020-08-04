@@ -1,0 +1,193 @@
+.filterModal {
+    width: 75em;
+    max-width: 75em !important;
+    .mat-dialog-container {
+        padding: 1.5em 1.5em 2.25em 1.5em !important;
+        .mat-dialog-title {
+            margin: 0 0 15px;
+            button{
+                bottom: 1em;
+                left: 0;
+                margin-right: 1em;
+            }
+        }
+    }
+    .mat-button-wrapper {
+        .material-icons {
+            &.close-icon {
+                margin-top: 0.2em;
+                font-size: 2em;
+                color: #575A5D;
+            }
+        }
+    }
+    .filestatus-filter {
+        align-self: flex-start;
+    }
+    .filestatus-filter, .departure-filter, .destination-filter, .policy-filter {
+        max-width: 22.3% !important;
+    }
+    @media(max-width: 959px) {
+        max-width: 100% !important;
+        width: 100% !important;
+        height:100% !important;
+        .movePhase-filter, .policy-filter, .departure-filter, .destination-filter, .filestatus-filter, .range-block {
+            width: 93%;
+            max-width: 93% !important;
+        }
+        .filestatus-filter {
+            align-self: auto;
+        }
+        .mat-button-wrapper {
+            .material-icons {
+                &.close-icon {
+                    margin-top: 0.5em;
+                }
+            }
+        }
+        h6{
+           margin-left: 0 !important;
+        }
+        .mat-dialog-container {
+            padding:0 !important;
+        }
+        .relative-block {
+            margin-bottom: 1em;
+            width: 100%;
+            &:last-child{
+                position:relative !important;
+                bottom:0 !important;
+            }
+            .inline-blk {
+                width: 33%;
+                .mat-form-field{
+                    width: 100% !important;
+                }
+                &.hyphenField {
+                    width: 1%
+                }
+            }
+        }
+        .filter-modal-wrap{
+            height: 100%;
+            .mat-dialog-title{
+                position: relative;
+                top: 0;
+                width: 100%;
+                background: #fff;
+                padding: 1em;
+                z-index: 1;
+                h2{
+                    margin-bottom:0;
+                }
+            }
+            .mat-dialog-content{
+               max-height: 83vh;
+               flex-grow: 0;
+               padding:0;
+               margin:0;
+            }
+            .mat-dialog-actions{
+                padding: 1em;
+                z-index: 1;
+                background: #fff;
+                position:sticky;
+                bottom:0;
+                box-shadow: 0.125em 0.125em 0.313em #ccc;
+                .filter-buttons{
+                    width:100%;
+                    button{
+                        width: auto;
+                    }
+                }
+            }
+        }
+        .policy-filter {
+            margin-bottom: 5em;
+        }
+    }
+    @media(max-width: 600px) {
+        h2 {
+            margin-left: 0 !important;
+        }
+        .mat-dialog-container {
+            .mat-dialog-title {
+                button {
+                    margin-right: 0.5em;
+                }
+            }
+        }  
+        .selection-block {
+            margin-left: 1.5em;
+        }
+    }
+    .mat-dialog-actions{
+        place-content: center flex-end;
+        padding: 0 0.9em 0.4em 0.9em;
+    }
+    h2 {
+        margin-top:0;
+        font-family: 'Avenir-Medium', sans-serif;
+        font-weight: 500;
+        color: #575A5D;
+    }
+    h6 {
+        margin-top: 0;
+        margin-bottom: 0.1em;
+        font-weight: bold;
+        font-size: 0.75em;
+        color: #575A5D;
+    }
+    .movePhase-filter{
+        .filter-block{
+            .mat-selection-list{
+                height: 12.4em;
+            }
+        }
+    }
+    .selection-block {
+        .range-block{
+            position: relative;
+            height: 14.63em;
+        }
+        .relative-block {
+            position: relative;
+            &:last-child{
+                position:absolute;
+                bottom: 1em;
+            }
+            .mat-form-field{
+                width: 8em;
+            }
+            .inline-blk{
+                display:inline-flex;
+                position: relative;
+            }
+            .optionalField {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                font-size: 0.75em;
+            }
+            .hyphenField {
+                padding: 0 0.675em;
+            }
+        }
+        .mat-form-field-appearance-legacy .mat-form-field-label {
+            font-weight: normal;
+            font-family: 'Avenir-Book',sans-serif;
+            color :#A5ACB0;
+        }
+    }
+
+    .filter-buttons {
+        button{
+            min-width: 10em;
+            font-family: 'Avenir-Medium',sans-serif;
+        }
+    }
+    .mat-button-focus-overlay {
+        background-color: transparent!important;
+    }
+}
+

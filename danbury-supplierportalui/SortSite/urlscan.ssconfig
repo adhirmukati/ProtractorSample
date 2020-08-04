@@ -1,0 +1,34 @@
+<Site>
+	<!-- scan this URL -->
+	<ProcessURL>https://supplierportaldev01.cartus.com/</ProcessURL>
+
+	<!-- and these additional URLs as part of the same site -->
+	<!-- <ProcessURL>http://www.example.com/landing-page1</ProcessURL> -->
+	<!-- <ProcessURL>http://www.example.com/landing-page2</ProcessURL> -->
+
+	<!-- scope options are scopePage, scopePageAndLinks, scopeFolder or scopeSite -->
+	<Scope>scopeSite</Scope>
+
+	<!-- set to false to ignore robots.txt (NB only do this for sites you control) -->
+	<UseRobotsTxt>true</UseRobotsTxt>
+
+	<!-- using these SortSite exported rule settings (optional) -->
+	<!-- <SettingsFile>/Projects/Test.sset</SettingsFile> -->
+
+	<!-- save results in this directory - must have a trailing slash -->
+	<!-- <ReportOutputPath>/Projects/TestOutput/</ReportOutputPath> -->
+	<ReportOutputPath>/SortSiteLogs/SupplierPortal/Reports/</ReportOutputPath>
+
+	<!-- return a non-zero error code from SortSiteCmd.exe if actual issues found don't match these counts -->
+	<!-- use this in automated builds or CI tools to flag an error when tests fail -->
+	<ExpectedResults>
+		<class name="ALL" expected="0" />	<!-- expected total issue count  -->
+		<class name="ERR" expected="0" />	<!-- expected issue count on Errors tab -->
+		<class name="ACC" expected="0" />	<!-- expected issue count on Accessibility tab -->
+		<class name="BUG" expected="0" />	<!-- expected issue count on Compatibility tab -->
+		<class name="SEO" expected="0" />	<!-- expected issue count on Search tab -->
+		<class name="USE" expected="0" />	<!-- expected issue count on Usability tab -->
+		<class name="LEG" expected="0" />	<!-- expected issue count on Privacy tab -->
+		<class name="W3C" expected="0" />	<!-- expected issue count on Standards tab -->
+	</ExpectedResults>
+</Site>

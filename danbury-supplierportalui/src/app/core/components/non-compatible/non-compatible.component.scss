@@ -1,0 +1,151 @@
+@import '../../../../sass/common-styles.scss';
+@import '../../../../sass//cartus-palette.scss';
+@import '../../../../sass/mixins/media-mixins.scss';
+
+$header-height: 7.5em;
+$main-content-width: 67.8125em;
+
+body{
+    overflow: auto;
+    background-color: map-get($cartus-palette, 'cartus_privacy_background_color');
+}
+
+.alpha-static-theme{
+    min-height: 100vh;
+
+    .page-header{
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+        height: $header-height;
+        .logo{
+            width: 11.3125em;
+            height: $header-height;
+            opacity: 1;
+        }
+    }
+
+    .main-body{
+        @include media-up(desktop){
+            height: calc( 100vh - #{$header-height} );
+        }
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        .main-content{
+            font-family: 'Avenir-Medium', sans-serif;
+            padding: 1.5em 1em 0em;
+            background: #fff;
+            text-align: center;
+            max-width: $main-content-width;
+            margin: 0 auto 1em auto;
+            @include media-down(mobile){
+                margin: 0 0.5em 1em 0.5em;
+            }
+            border: 1px solid map-get($cartus-palette, 'cartus_light_gray');
+            @include media-up(desktop){
+                padding: 1.5em 2.5em 0em;
+            }
+            @include media-up(desktop-lg){
+                width: $main-content-width;
+            }
+
+            .browsers{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                list-style-type: none;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                > li{
+                    list-style-type: none;
+                    margin: 0 0 3em;
+                    padding: 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    > .browser-icon{
+                        height: 8em;
+                        @include media-up(desktop){
+                            height: 10em;
+                        }
+                    }
+                    > .label{
+                        font-size: 1.5em;
+                        color: map-get($cartus-palette, 'cartus_accent_blue1');
+                        margin-top: 0.67em;
+                    }
+                }
+            }
+        }
+        .page-footer{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;     
+            position: relative;
+            height: 3em;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            font-family: 'Avenir-Book', sans-serif;
+            color: map-get($cartus-palette, 'cartus_footer_text_color');
+            padding: 0.75em 1em 0.875em;
+            margin-top: auto;
+            @media screen and (max-width: 768px) {
+                height: 5.25em;
+                display: flex;
+                flex-direction: column;
+            }
+            .footer-link{
+                @media screen and (max-width: 768px) {
+                    padding-left: 0em;
+                } 
+                .link{
+                    &:last-child{
+                        &::before{
+                            content:'|';
+                            padding: 0 1em;
+                        }
+                    }
+                    a{
+                        color: map-get($cartus-palette, 'cartus_accent_blue1');
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .copyright{
+                @media screen and (max-width: 768px) {
+                    padding-bottom: 1em;
+                }
+            }
+        } 
+    }
+
+    .heading{
+        color: map-get($cartus-palette, 'cartus_gray');
+        font-size: 2.5em;
+        @include media-down(mobile){
+            font-size: 2em;
+        }
+        font-family: 'Avenir-Medium', sans-serif;
+        text-align: center;
+        font-weight: normal;
+        margin: 0;
+    }
+
+    .text{
+        font-family: 'Avenir-Medium', sans-serif;
+        margin: 0 auto 2em auto;
+        font-size: 1.5em;
+        @include media-down(mobile){
+            font-size: 1em;
+        }
+        font-weight: normal;
+        color: map-get($cartus-palette, 'cartus_gray');
+        line-height: 1.375em;
+        max-width: 33.3em;
+    }
+}

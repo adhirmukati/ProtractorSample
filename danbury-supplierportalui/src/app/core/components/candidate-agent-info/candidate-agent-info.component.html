@@ -1,0 +1,37 @@
+<div class="container" fxFlex="100%" fxLayout="column" fxLayout.xs="column" >
+    
+    <div class="emptyAgentInfo" fxLayout="column" fxLayout.xs="column" fxFlex.xs="100%" *ngIf="isEmptyAgentInfo" fxLayoutAlign="center center" fxLayoutGap.xs="0px">
+        <span class="spanText">You must add Agent Contact info before you can provide additional updates</span>
+        <span class=" addInfolink"><a (click)="openAgentDialog()">Add Agent Contact Details</a></span>
+    </div> 
+    <div  fxLayout="row" fxLayout.xs="column" fxFlex.xs="100%" fxLayout.xs="column" fxLayoutAlign="space-between"
+    fxLayoutGap.xs="4px" fxLayoutGap="32px" *ngIf="!isEmptyAgentInfo">
+        <div fxFlex="33%" fxLayoutAlign="start" >
+            <mat-form-field fxFlex class="agent-mat-form"> 
+                <mat-label>Contact Name</mat-label>
+                <input matInput type="text"  readonly [value]="agentInfo?.name" placeholder="Agent Name"/> 
+            </mat-form-field>
+        </div>
+        <div fxFlex="33%">
+            <mat-form-field fxFlex class="agent-mat-form">
+                <mat-label>Email Address</mat-label>
+                <input matInput type="text"  readonly [value]="agentInfo?.email" placeholder="Email Address"/>
+            </mat-form-field>
+        </div> 
+        <div fxFlex="33%" >
+            <mat-form-field fxFlex class="agent-mat-form">
+                <mat-label>Phone #</mat-label>
+                <input matInput readonly   [value]="agentPhoneNumber" type="text" placeholder="Phone #"/>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="item edit" fxLayout="row" fxLayout.xs="column" fxFlex.xs="100%" fxLayoutAlign="end" fxLayoutAlign.xs="center center" *ngIf="!isEmptyAgentInfo">
+        <button mat-button
+            class="mat-button contained-button" (click)="openAgentDialog()" id="Authorize">
+            Edit Details
+        </button>
+    </div>
+
+
+</div>

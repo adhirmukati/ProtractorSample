@@ -1,0 +1,607 @@
+@import '../sass/cartus-palette.scss';
+@import '../sass/button-styles.scss';
+@import '../sass/dialog.scss';
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+/*Break points */
+/*xs*/
+/* @media screen and (max-width: 599px){ // Please do not use this as it should have 100% width for mobile device
+    .candidates-container {
+        width:95%;
+        padding: 0 10px;
+        margin:0 auto;
+      //  padding: 0em 1em;
+    }
+} */
+// sm
+@media screen and (min-width: 600px) and (max-width: 959px) {
+  .candidates-container {
+    width: 80%;
+    padding: 0 10%;
+    margin: 0 auto;
+    // padding: 0em 1.25em;
+  }
+}
+// md
+@media screen and (min-width: 960px) and (max-width: 1279px) {
+  .candidates-container {
+    width: 80%;
+    padding: 0 10%;
+    margin: 0 auto;
+  }
+}
+//lg
+@media screen and (min-width: 1280px) and (max-width: 1599px) {
+  .candidates-container {
+    width: 80%;
+    padding: 0 10%;
+    margin: 0 auto;
+  }
+}
+// xtra lg
+@media screen and (min-width: 1600px) {
+  .candidates-container {
+    width: 1300px;
+    padding: 0 10%;
+    margin: 0 auto;
+  }
+}
+// ends
+// Header fonts
+
+.mat-display1 {
+  font-size: 1.5em;
+
+  &.mat-display2 {
+    font-family: 'Avenir-Roman',sans-serif;
+  }
+}
+
+.mat-display2 {
+  font-size: 1.25em;
+}
+
+p {
+  font-family: 'Avenir-Book', sans-serif;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+.tranfereeDetailsModal {
+  .mat-dialog-container {
+    border-radius: 4px;
+    padding: 1.5em;
+    overflow: hidden;
+    min-height: 28.125em;
+  }
+  @media screen and (max-width: 599px) {
+    max-width: 100% !important;
+    height: 100%;
+    width: 100%;
+
+    .mat-dialog-container {
+      border-radius: 0;
+      width: 100%;
+      box-shadow: none;
+      border: none;
+    }
+
+    .people-container {
+      margin-top: .9em;
+    }
+  }
+
+}
+
+.transfereeAssessmentModal {
+  .mat-dialog-container {
+    border-radius: 4px;
+    padding: 1.5em;
+    overflow-y: hidden;
+    min-height: 28.125em;
+  }
+  @media screen and (max-width: 599px) {
+    max-width: 100% !important;
+    height: 100%;
+    width: 100%;
+
+    .mat-dialog-container {
+      border-radius: 0;
+      width: 100%;
+      box-shadow: none;
+      border: none;
+    }
+
+    .people-container {
+      margin-top: .9em;
+    }
+  }
+
+}
+
+/*menu styles */
+.menu-style[aria-expanded="true"] {
+  color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+
+  .menuName {
+    text-decoration: underline;
+  }
+
+  .menuIconBlock {
+    .expandMore {
+      display: none;
+    }
+
+    .expandLess {
+      display: block;
+    }
+  }
+}
+
+.menu-style {
+  font-family: 'Avenir-Book',sans-serif;
+  color: map-get($cartus-palette, 'cartus_light_gray');
+
+  &:hover {
+    .menuName {
+      text-decoration: underline;
+    }
+    background-color: map-get($cartus-palette,'cartus_hover_tint');
+  }
+
+  &:active {
+    .menuName {
+      text-decoration: underline;
+    }
+    color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+  }
+
+  .menuIconBlock {
+    .mat-icon {
+      font-weight: bold;
+      font-size: 1.75em;
+    }
+
+    .expandMore {
+      display: block;
+    }
+
+    .expandLess {
+      display: none;
+    }
+  }
+}
+.cdk-overlay-pane{
+    .mat-menu-panel {
+        min-width: 8.4375em;
+        margin-top: 1em;
+        @media screen and (max-width:600px){
+            margin-top:0;
+        }
+        .mat-menu-content{
+            padding:0;
+            button.mat-menu-item{
+                font-family:'Avenir-Roman',sans-serif;
+                &:hover{
+                    color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+                    background-color: map-get($cartus-palette,'cartus_orange_tint');
+                    .mat-icon{
+                        color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+                    }
+                }
+            }
+        }
+      }
+    }
+.error:hover {
+  color: map-get($cartus-palette, 'cartus_error_feedback');
+}
+
+/* Cartus Design Framework Documenation */
+
+/* Material Design - Typography */
+
+h1 {
+  font-size: 1.5em;
+  color: map-get($cartus-palette, 'cartus_gray' );
+}
+
+h2 {
+  font-size: 1.25em;
+  color: map-get($cartus-palette, 'cartus_gray' );
+}
+
+/* Material Design - Dialog  */
+
+/* Material Design - Buttons & Links */
+
+/* Alpha Search Component */
+
+.table_views .mat-icon {
+  color: map-get($cartus-palette, 'cartus_light_gray');
+}
+
+.text-as-link {
+  color: map-get($cartus-palette, 'cartus_action_button');
+  text-decoration: none;
+  font-family: 'Avenir-Book', sans-serif;
+
+  &.subtitle {
+    font-size: .75em;
+  }
+}
+
+.subtitle {
+  font-size: .75em;
+}
+
+/* Material Design - Tables */
+
+.mat-paginator-container {
+  position: relative;
+
+  .mat-paginator-page-size {
+    position: relative;
+    right: 0;
+  }
+
+  .mat-paginator-range-actions {
+    position: relative;
+    padding-left: 40px;
+
+    .mat-paginator-range-label {
+      margin: 0;
+      position: static;
+      left: 0;
+      font-size: 1em;
+      font-family: 'Avenir-Book',sans-serif;
+      padding-top: 5px;
+    }
+
+    .mat-paginator-navigation-previous {
+      margin-right: auto;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+
+.mat-paginator-page-size-select {
+  width: 2.8125em;
+  padding-top: .2em;
+}
+/* Material Design - Forms, Validations, Error */
+
+// .mat-form-field-appearance-outline {
+//   .mat-form-field-outline-end,
+//   .mat-form-field-outline-gap,
+//   .mat-form-field-outline-start {
+//     border: map-get($cartus-palette, 'cartus_light_gray' );
+//   }
+// }
+
+.mat-select-value {
+  color: #575A5D;
+  font-weight: 100;
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: map-get($cartus-palette, 'cartus_error_feedback' );
+}
+
+.mat-error {
+  color: map-get($cartus-palette, 'cartus_error_feedback' );
+}
+
+/* Material Design - Lists */
+
+/* Material Design - Icons */
+
+.page_header .mat-icon {
+  color: map-get($cartus-palette, 'cartus_light_gray' ) !important;
+  vertical-align: bottom;
+  cursor: pointer;
+}
+
+/* Material Design - Notifications */
+
+/* Expansion Panels or Accordions */
+
+.mat-raised-button.mat-primary {
+  background-color: map-get($cartus-palette, 'cartus_accent_blue' ) !important;
+  height: 3.5em;
+}
+
+.mat-outline-button {
+  background-color: map-get($cartus-palette, 'cartus_accent_blue' ) !important;
+  height: 3.5em;
+}
+
+.cLinks a {
+  color: map-get($cartus-palette, cartus_accent_blue);
+  text-decoration: none;
+}
+
+.project_alpha {
+  padding: 1.2em;
+}
+
+.viewsetting-icon {
+  color: map-get($cartus-palette, 'cartus_light_gray' );
+  padding-left: 1em;
+  padding-top: .5em;
+  cursor: pointer;
+  @media screen and (max-width:600px) {
+    padding-left: .3em;
+  }
+}
+
+/* Search within Tables */
+.search-within-table {
+  background-color: #fff !important;
+  font-size: 1em !important;
+  font-weight: normal !important;
+  color: #575A5D;
+  width: 32.3125em;
+  border: 1px solid #AAAAAA !important;
+  @media screen and (max-width:600px) {
+    width: 17.375em;
+  }
+
+  .mat-form-field {
+    &-appearance-outline,
+    &-flex,
+    &-wrapper {
+      outline: none;
+    }
+  }
+
+  .mat-form-field-flex {
+    .mat-form-field-outline {
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.search_table .mat-form-field-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.search_table .search-input {
+  vertical-align: text-top;
+}
+
+.highlight-search {
+  background-color: map-get($cartus-palette, 'cartus_highlight');
+}
+
+.highlighted {
+  background-color: map-get($cartus-palette, 'cartus_hover_tint');
+}
+
+.search-table .mat-form-field-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.listStatusDate {
+  font-size: 0.75em ;
+}
+
+// .mat-form-field-appearance-outline .mat-form-field-infix {
+//   padding: .5em 0 1em;
+// }
+
+// .mat-form-field-appearance-outline .mat-form-field-prefix
+// .mat-form-field-appearance-outline .mat-form-field-suffix {
+//   top: .4em !important;
+// }
+
+// .mat-form-field-appearance-outline 
+// {
+//   .mat-form-field-prefix,
+//   .mat-form-field-suffix {
+//     top: .4em !important;
+//   }
+// }
+
+
+// .mat-form-field-appearance-outline .mat-form-field-outline-end,
+// .mat-form-field-appearance-outline .mat-form-field-outline-gap,
+// .mat-form-field-appearance-outline .mat-form-field-outline-start {
+//   border: map-get($cartus-palette , 'cartus-light-gray') !important;
+//   border: 0 !important;
+// }
+
+
+
+.mat-form-field-appearance-outline 
+ {
+
+    // .mat-form-field-outline-end,
+    // .mat-form-field-outline-gap,
+    // .mat-form-field-outline-start {
+    //   border: map-get($cartus-palette, 'cartus_light_gray' );
+    // }
+  
+  .mat-form-field-outline-thick,
+  .mat-form-field-outline-end,
+  .mat-form-field-outline-gap,
+  .mat-form-field-outline-start {
+    border: map-get($cartus-palette , 'cartus-light-gray') !important;
+    border: 0 !important;
+    transition: none !important;
+  }
+  .mat-form-field-prefix,
+  .mat-form-field-suffix {
+    top: .4em !important;
+  }
+ .mat-form-field-infix {
+    padding: .5em 0 1em;
+  }
+
+}
+
+
+// .mat-form-field-appearance-outline  {
+//   .mat-form-field-outline-thick,
+//   .mat-form-field-outline-end,
+//   .mat-form-field-outline-gap,
+//   .mat-form-field-outline-start {
+//     border-width: 0 !important;
+//     transition: none !important;
+//   }
+// }
+
+.success {
+  background-color: map-get($cartus-palette, 'cartus_notification_icon_green');
+}
+
+.success button {
+  color: #fff;
+}
+
+.danger {
+  background-color: map-get($cartus-palette, 'cartus_error_feedback');
+}
+
+.danger button {
+  color: #fff;
+}
+
+.mat-dialog-title {
+  margin: 0 !important;
+}
+
+.mat-dialog-content {
+  padding: .5em 1.5em !important;
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+}
+
+.addcandidateformcontainer {
+  .mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline {
+    background-color: rgba(0, 0, 0, 0.42) !important;
+    background-image: none !important;
+  }
+}
+// Navigation tab style strats
+
+.candidate-nav-tab {
+  .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #AAC8FF !important;
+    height: .25em !important;
+  }
+
+  .mat-tab-header,
+  .mat-tab-nav-bar {
+    border: none;
+  }
+
+  .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+    .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+      display: none;
+    }
+    @media screen and (max-width:767px) {
+      .mat-tab-header-pagination-chevron {
+        display: none !important;
+      }
+
+      .mat-tab-header-pagination {
+        min-width: 0 !important;
+        box-shadow: none !important;
+      }
+
+      .candidate-nav-tab .mat-tab-link {
+        width: auto !important;
+        min-width: 8.125em;
+      }
+    }
+  }
+}
+
+.candidate-name-highlightbg {
+  background: #F0F0F0 0 0 no-repeat padding-box;
+  width: 15.5em;
+  padding: 0 .125em;
+  margin-bottom: .2em;
+  margin-top: .2em;
+}
+//popup container style ends here
+//auto complete
+.mat-autocomplete-panel {
+  .mat-option,
+  .mat-select-value {
+    font-family: 'Avenir-Roman', sans-serif;
+    font-size: 1em !important;
+    line-height: 2.5em !important;
+    color: #565656 !important;
+    @media screen and (max-width: 600px) {
+      font-family: 'Avenir-Medium', sans-serif;
+    }
+  }
+}
+//@at-root
+@media screen and (max-width:767px) {
+  .hide-xs {
+    display: none;
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.strong {
+  font-family: 'Avenir-Black', sans-serif !important;
+}
+
+.italic {
+  font-family: 'Avenir-Oblique', sans-serif !important;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.header-menu {
+  min-height: auto !important;
+}
+
+.center{
+    text-align: center;
+}
+
+
+@media screen and (min-width:768px){
+    .empsettingsContainer{
+        .mat-dialog-container{
+        width:22em !important;
+        }
+        .settings-tablecol{
+            width:22em !important;
+        }
+    }           
+}
+@media screen and (max-width:600px){
+    .empsettingsContainer{
+        .settings-tablecol{
+                    height:70%;
+        }
+    }
+}
+    

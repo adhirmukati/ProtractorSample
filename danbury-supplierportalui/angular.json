@@ -1,0 +1,347 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "supplierportal": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/supplierportal",
+            "baseHref": "/",
+            "deployUrl": "http://localhost:4203/",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/web.config",
+              "src/assets",
+              "src/manifest.json",
+              "src/environment-config.json",
+              "src/manifest.webmanifest"
+            ],
+            "styles": [
+              "src/styles.scss",
+              "src/sass/app.scss",
+              "src/sass/cartus-palette.scss",
+              "src/sass/app-theme.scss",
+              "src/sass/common-styles.scss",
+              "src/assets/material/material-icons.css",
+              "src/sass/dialog.scss",
+              "src/sass/snackbar.scss",
+              "src/sass/mat-table.scss",
+              "src/sass/breadcrum.scss"
+            ],
+            "scripts": [],
+            "aot": true
+          },
+          "configurations": {
+            "mocked": {
+              "deployUrl": "http://localhost:4203/",
+              "tsConfig": "src/tsconfig.app.json",
+              "aot": true,
+              "statsJson": true
+            },
+            "developer": {
+              "index": "src/index.html",
+              "main": "src/main.ts",
+              "polyfills": "src/polyfills.ts",
+              "deployUrl": "https://supplierportaldev01.cartus.com/",
+              "tsConfig": "src/tsconfig.app.json",
+              "aot": true,
+              "statsJson": true,
+              "assets": [
+                "src/favicon.ico",
+                "src/web.config",
+                "src/assets",
+                "src/manifest.json",
+                "src/environment-config.json"
+              ],
+              "styles": [
+                "src/styles.scss",
+                "src/sass/app.scss",
+                "src/sass/cartus-palette.scss",
+                "src/sass/app-theme.scss"
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environment-config.json",
+                  "with": "src/environment-config.generated.json"
+                }
+              ]
+            },
+            "dev": {
+              "deployUrl": "https://supplierportaldev01.cartus.com/",
+              "outputPath": "dist/supplierportal-dev",
+              "baseHref": "/",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                },
+                {
+                  "replace": "src/environment-config.json",
+                  "with": "src/environment-config.generated.json"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            },
+            "ft": {
+              "deployUrl": "https://supplierportalft.cartus.com/",
+              "outputPath": "dist/supplierportal-ft",
+              "baseHref": "/",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/environment-config.json",
+                  "with": "src/environment-config.generated.json"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": false
+            },
+            "qa": {
+              "deployUrl": "https://supplierportaltst01.cartus.com/",
+              "outputPath": "dist/supplierportal-qa",
+              "baseHref": "/",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.qa.ts"
+                },
+                {
+                  "replace": "src/environment-config.json",
+                  "with": "src/environment-config.generated.json"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            },
+            "stg": {
+              "deployUrl": "https://supplierportalstg01.cartus.com/",
+              "outputPath": "dist/supplierportal-stg",
+              "baseHref": "/",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stg.ts"
+                },
+                {
+                  "replace": "src/environment-config.json",
+                  "with": "src/environment-config.generated.json"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            },
+            "prod": {
+              "deployUrl": "https://supplierportal.cartus.com/",
+              "outputPath": "dist/supplierportal-prod",
+              "baseHref": "/",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/environment-config.json",
+                  "with": "src/environment-config.generated.json"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            },
+            "integration": {
+              "outputPath": "dist/supplierportal-integration",
+              "deployUrl": "https://localhost:4203/",
+              "aot": true,
+              "statsJson": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/environment-config.json",
+                  "with": "src/environment-config.generated.json"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "servePath": "",
+            "proxyConfig": "proxy.conf.ts",
+            "browserTarget": "supplierportal:build"
+          },
+          "configurations": {
+            "mocked": {
+              "servePath": "",
+              "proxyConfig": "proxy.conf.ts",
+              "browserTarget": "supplierportal:build:mocked"
+            },
+            "integration": {
+              "ssl": true,
+              "servePath": "",
+              "proxyConfig": "proxy.integration.conf.ts",
+              "browserTarget": "supplierportal:build:integration"
+            },
+            "production": {
+              "browserTarget": "supplierportal:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "supplierportal:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "codeCoverage": false,
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
+            "styles": [
+              "src/styles.scss",
+              "src/sass/app.scss",
+              "src/sass/cartus-palette.scss",
+              "src/sass/app-theme.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.json",
+              "src/environment-config.json",
+              "src/manifest.webmanifest"
+            ]
+          },
+          "configurations": {
+            "code-coverage": {
+              "progress": false,
+              "karmaConfig": "src/karma.conf.ci.js",
+              "codeCoverage": true
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "supplierportal-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.mocked.conf.js",
+            "devServerTarget": "supplierportal:serve",
+            "webdriverUpdate": true
+          },
+          "configurations": {
+            "production": {
+              "protractorConfig": "e2e/protractor.conf.js",
+              "devServerTarget": "supplierportal:serve:production"
+            },
+            "integration": {
+              "protractorConfig": "e2e/protractor.integration.conf.js",
+              "devServerTarget": "supplierportal:serve:integration"
+            },
+            "ie": {
+              "protractorConfig": "e2e/protractor.ie.conf.js",
+              "devServerTarget": "supplierportal:serve:mocked",
+              "webdriverUpdate": false
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "supplierportal"
+}

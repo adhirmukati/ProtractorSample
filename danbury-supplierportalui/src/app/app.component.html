@@ -1,0 +1,117 @@
+<app-privacy-notice *ngIf="(router.url==='/privacy-statement' || router.url==='/terms-of-use' || router.url==='/contact-us')"></app-privacy-notice>
+<app-non-compatible *ngIf="(router.url==='/not-supported')"></app-non-compatible>
+<div fxLayout="row" fxFill
+  *ngIf="!(router.url==='/privacy-statement' || router.url==='/terms-of-use' || router.url==='/contact-us' || router.url==='/not-supported')">
+  <div fxFlex="100">
+    <div class="content-col-desktop" *ngIf="!(this.sessionCookie === '')">
+      <mat-toolbar class="header-desktop header-desktop-r" fxHide.lt-md style="background-color:#ffff; color:#4585c4"
+        fxFill fxLayout="row" fxLayoutAlign="space-between center">
+        <div style="width:130px;"><img src="../assets/images/logos/logo-mobilify-H.svg" alt="" /></div>
+        <div class="userInfo">
+          <div class="shortName">{{loggedInUserInitials}}</div>
+          <div class="userName">{{loggedInUserName}}</div>
+          <div>
+            <mat-icon class="material-icons drop-down-ico" mat-icon-button [matMenuTriggerFor]="menu">arrow_drop_down
+            </mat-icon>
+          </div>
+        </div>
+      </mat-toolbar>
+      <mat-menu class="user-opt-drop-down header-menu" #menu="matMenu">
+        <div class="authorName" fxHide fxShow.xs fxShow.sm>{{loggedInUserName}}</div>
+        <ng-container *ngFor="let item of menuItems">
+          <button mat-menu-item [routerLink]="[item.link]">
+            <mat-icon class="menu-item-icon" svgIcon={{item.icon}}></mat-icon>
+            <span class="menu-item-txt">{{item.title}}</span>
+          </button>
+        </ng-container>
+      </mat-menu>
+      <div fxHide.gt-sm>
+        <div class="header-mobile">
+          <div fxFill fxLayout="row" fxLayoutAlign="space-between center">
+
+            <span style="width:120px;"><img src="../assets/images/logos/logo-mobilify-stacked.svg" alt="" /></span>
+            <button type="button" mat-button (click)="nav.close();mobsearch.toggle()" class="header-mobile-search">
+              <mat-icon>search</mat-icon>
+            </button>
+            <div class="userInfo">
+              <div class="shortName">{{loggedInUserInitials}}</div>
+              <div>
+                <mat-icon class="material-icons drop-down-ico" mat-icon-button [matMenuTriggerFor]="menu">
+                  arrow_drop_down</mat-icon>
+              </div>
+            </div>
+          </div>
+          <div>
+            <mat-expansion-panel #mobsearch mode="over" fxFill class="search-mobile">
+              <input class="search-input" placeholder="Search by Name or File #" />
+            </mat-expansion-panel>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-drawer-container fxFill ngClass.lt-md="content-mobile" ngClass.gt-sm="content-desktop">
+      <mat-drawer *ngIf="!(this.sessionCookie === '')" fxHide.gt-sm #nav mode="over" class="nav-mobile" (window:resize)="nav.close()" [autoFocus]="false">
+        <div fxFill fxLayout="column" fxLayoutAlign="space-between">
+          <div fxFlex>
+            <mat-nav-list>
+              <mat-list-item class="123" *ngFor="let link of navLinks; let i = index;" [routerLink]="[link.path]">
+                {{link.label}}
+              </mat-list-item>
+            </mat-nav-list>
+            <strong style="padding-left:10px;">Admin Access</strong>
+            <hr />
+            <mat-nav-list>
+              <mat-list-item>
+                Manage Client Contacts
+              </mat-list-item>
+              <mat-list-item>
+                Trash
+              </mat-list-item>
+            </mat-nav-list>
+          </div>
+          <div fxFlex="nogrow">
+            <hr class="sidebar-hr" />
+
+          </div>
+          <div fxFlex="nogrow" class="sidebar-mobile-logout">
+            <button fxFill fxLayoutAlign="end" type="button" mat-button>
+              <span>Logout</span>
+              <mat-icon>exit_to_app</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-drawer>
+      <mat-drawer-content>
+        <div fxFill class="main-content " (click)="nav.close();mobsearch.close()">
+          <div class="candidate-nav-tab" *ngIf="!(this.sessionCookie === '')">
+            <nav mat-tab-nav-bar class="mat-nav-bar">
+              <div class="candidates-container mat-mob-nav">
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <span fxFlex="100%" fxLayoutAlign="start" fxLayoutAlign="start" fxFlex="100%" fxLayout fxLayout.xs="row"
+                    fxLayoutGap.xs="25px" class="mobile-nav-center">
+                    <a mat-tab-link *ngFor="let link of navLinks; let i = index;" [routerLink]="[link.path]" routerLinkActive
+                      #rla="routerLinkActive" [active]="rla.isActive || router.url==='/quote-request/detail' || (router.url==='/work-order/detail' && i === 1)">
+                      <span class="candidate-nav-icon">
+                        <mat-icon class="white-icon" aria-hidden="false"
+                          aria-label="Example thumbs up SVG icon">{{link.icon}}</mat-icon>
+                      </span>
+                      <span *ngIf="link.path != 'admin'" fxShow.sm="false" fxShow.xs="false" fxShow.gt-md="true" fxShow="true"
+                        class="candidate-link-txt">{{link.label}}</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </nav>
+          </div>
+          <div class="candidate-headercontent">
+            <div class="candidates-container">
+            <router-outlet (activate)="onActivate()"></router-outlet></div>
+            <app-footer *ngIf="!(this.sessionCookie === '')"></app-footer>
+          </div>
+          
+          
+        </div>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </div>
+</div>

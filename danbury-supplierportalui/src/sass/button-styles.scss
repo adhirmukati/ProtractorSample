@@ -1,0 +1,190 @@
+/* Common Material Buttons Starting From Cost Model Screen */
+._button_default_guide{
+  font-family: 'Avenir-Roman', sans-serif;
+  font-size: 1.25em;
+  line-height: 1em;
+  color: map-get($cartus-palette, 'cartus_accent_blue');
+  height: 2.8em;
+  box-sizing: border-box;
+  padding: 0.4em;
+  border-radius: 4px;
+  @media screen and (min-width: 960px) and (max-width: 1279px) {
+    height: 2.4em;
+  }
+  @media screen and (max-width: 959px) {
+    height: 2em;
+  }
+}
+
+._button_focused{
+  text-decoration: underline;
+  border: 1px solid map-get($cartus-palette, 'cartus_dark_accent_blue');
+}
+
+button{
+  &:disabled {   
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  &.contained-button{
+    @extend ._button_default_guide;
+    color: map-get($cartus-palette, 'cartus_nav_tile');
+    background-color: map-get($cartus-palette, 'cartus_action_button');
+    min-width: 7.2em;
+    border: none;
+    &:active {
+      @extend ._button_focused;
+      background-color: map-get($cartus-palette, 'cartus_action_button');
+    }
+    &:hover {
+      background-color: map-get($cartus-palette, 'cartus_action_button');
+      color: map-get($cartus-palette, 'cartus_nav_tile');
+    }
+    &:disabled {
+      color: map-get($cartus-palette, 'cartus_gray') !important;
+      background-color: map-get($cartus-palette, 'cartus_disabled_gray') !important;
+    }
+  }
+  &.outlined-button {
+    @extend ._button_default_guide;
+    color: map-get($cartus-palette, 'cartus_accent_blue');
+    border: 1px solid map-get($cartus-palette, 'cartus_light_gray');
+    min-width: 4.8em;
+    &:active {
+      @extend ._button_focused;
+      border: 2px solid map-get($cartus-palette, 'cartus_light_gray');
+      background-color: map-get($cartus-palette, 'cartus_hover_tint');
+    }
+    &:hover {
+      color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+      border: 1px solid map-get($cartus-palette, 'cartus_light_gray');
+    }
+    &:disabled {
+      color: map-get($cartus-palette, ' cartus_disabled_gray') !important;
+      border: 1px solid map-get($cartus-palette, 'cartus_disabled_gray') !important;
+    }
+  }
+  &.text-button {
+    @extend ._button_default_guide;
+    color: map-get($cartus-palette, 'cartus_accent_blue');
+    border: none;
+    background: none;
+    min-width: 4em;  
+    &:active {
+      @extend ._button_focused;
+      color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+      background: none !important;
+    }
+    &:hover {
+      color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+      background-color: map-get($cartus-palette, 'cartus_hover_tint');
+    }
+    &:disabled {
+      color: map-get($cartus-palette, ' cartus_disabled_gray');
+    }
+  }
+}
+
+.mat-raised-button {
+  font-family: 'Avenir-Roman', sans-serif;
+  color: map-get($cartus-palette, 'cartus_primary_blue_contrast');
+  background-color: map-get($cartus-palette, 'cartus_accent_blue');
+  &:hover {
+    background-color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+  }
+}
+.mat-button.mat-primary .mat-button-focus-overlay, .mat-icon-button.mat-primary .mat-button-focus-overlay, .mat-stroked-button.mat-primary .mat-button-focus-overlay{
+  background:transparent;
+}
+
+.mat-dialog-actions{
+  button{
+    margin-right: 1.2em;
+    @extend ._button_default_guide;
+    &.text-button{
+      margin-right: 0.8em;
+    }
+    &:last-child{
+      margin-right: 0em;
+    }
+  }
+  @media screen and (max-width:375px){
+    button{
+      font-size: 1em;
+      margin-right: 0.8em;
+      &.text-button{
+        margin-right: 0.4em;
+      }
+      &:last-child{
+        margin-right: 0em;
+      }
+    }
+  }
+  .mat-button-base{
+    +.mat-button-base{
+      margin-left: 0em !important;
+    //  color: map-get($cartus-palette, 'cartus_primary_blue_contrast');
+    }
+  }
+}
+
+.delete-dialog-btn{
+  .contained-button{
+    @media screen and (max-width: 400px) {     
+      padding:0 1em;
+      line-height: 1.9375em !important;
+      min-width: 9em !important;
+      font-size: 1em !important;
+    }
+    @media screen and (min-width:401px){
+      font-size: 1.25em !important;
+      padding:0 8px;
+    }
+  }
+  .text-button {
+    @media screen and (max-width: 400px) { 
+      font-size: 1em !important;
+    }
+    @media screen and (min-width:401px){
+      font-size: 1.25em !important;
+      padding:0 8px;
+    }
+  }
+}
+.add-dialogbtn{
+  .contained-button{
+    @media screen and (max-width: 400px) {     
+      padding:0 1em;
+      line-height: 1.9375em !important;
+      min-width: 5em !important;
+      font-size: 1em !important;
+    }
+    @media screen and (min-width:401px) and (max-width:600px){
+      font-size: 1.25em !important;
+      padding:0 8px;
+      min-width: 5em !important;
+    }
+  }
+  .outlined-button{
+    @media screen and (max-width: 400px) {     
+      padding:0 0.5em;
+      line-height: 1.9375em !important;
+      min-width: 5em !important;
+      font-size: 1em !important;
+    }
+    @media screen and (min-width:401px) and (max-width:600px) {
+      font-size: 1.25em !important;
+      padding:0 8px;
+      min-width: 5em !important;
+    }
+  }
+  .text-button {
+    @media screen and (max-width: 400px) { 
+      font-size: 1em !important;
+    }
+    @media screen and (min-width:401px) and (max-width:600px){
+      font-size: 1.25em !important;
+      padding:0 8px;
+    }
+  }
+}

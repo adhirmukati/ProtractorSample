@@ -1,0 +1,6 @@
+<div class="overlay-tooltip {{tooltTipPos}}">
+    <div *ngIf="displayObj !== undefined">
+        <p class="hint">{{displayObj.value}}</p>
+        <span class="arrow" [ngStyle]="{'left': arrowLeftPos}"></span>
+    </div>
+</div>

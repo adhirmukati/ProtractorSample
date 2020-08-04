@@ -1,0 +1,92 @@
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+<div class="candidateprofile-nav">
+  <a [routerLink]="['/quotes-request']">Quote Requests</a>
+  <span class="current">{{candidateName}}</span>
+</div>
+<!--Section To Candidate Profiles-->
+<div class="budget-container">
+  <div class="budget-content-container">
+
+    <app-candidate-contact-info *ngIf="candidateContactInfo" [candidateContactInfo]="candidateContactInfo">
+    </app-candidate-contact-info>
+
+    <mat-accordion class="candidate-review-panel candidate-info-panel" multi="true">
+      <!--Candidate Details starts-->
+      <mat-expansion-panel class="candidate-detail">
+        <mat-expansion-panel-header [collapsedHeight]="matExpansionHeaderHeight"
+          [expandedHeight]="matExpansionHeaderHeight">
+          <span class="panel-heading">Details</span>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <app-candidate-info *ngIf="candidateInfo" [candidateInfo]="candidateInfo" class="full-stretch">
+          </app-candidate-info>
+        </mat-panel-description>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="candidate-review-panel move-departure-panel" multi="true">
+      <!--Move Details starts-->
+      <mat-expansion-panel class="move-detail-panel">
+        <mat-expansion-panel-header [collapsedHeight]="'auto'" [expandedHeight]="matExpansionHeaderHeight" fxLayout
+          fxLayout.xs="row" fxLayoutGap="10px">
+          <div fxFlex="34%" class="panel-heading">Move Details</div>
+          <div *ngIf="candidateMoveInfo" fxFlex="66%" class="header-right-node move hide-on-expand">
+            <span>{{candidateMoveInfo.departure.fullAddress}}</span>
+            <mat-icon class="material-icons arrow">chevron_right</mat-icon>
+            <span>{{candidateMoveInfo.destination.fullAddress}}</span>
+          </div>
+        </mat-expansion-panel-header>
+        <mat-panel-description class="remove-margin">
+          <app-candidate-move-info *ngIf="candidateMoveInfo" [candidateMoveInfo]="candidateMoveInfo"
+            class="full-stretch"></app-candidate-move-info>
+        </mat-panel-description>
+      </mat-expansion-panel>
+      <!--Departure & Home Details starts-->
+      <mat-expansion-panel>
+        <mat-expansion-panel-header [collapsedHeight]="matExpansionHeaderHeight"
+          [expandedHeight]="matExpansionHeaderHeight" fxLayout fxLayout.xs="row" fxLayoutGap="10px">
+          <div fxFlex="80%" class="panel-heading">Departure Home Details</div>
+        </mat-expansion-panel-header>
+        <mat-panel-description class="remove-margin">
+          <app-candidate-departure-home-detail *ngIf="candidateDepartureInfo"
+            [candidateDepartureInfo]="candidateDepartureInfo" class="full-stretch">
+          </app-candidate-departure-home-detail>
+        </mat-panel-description>
+      </mat-expansion-panel>
+<!-- Quote response  -->
+      <mat-expansion-panel *ngIf="quoteResponseInfo">
+        <mat-expansion-panel-header [collapsedHeight]="matExpansionHeaderHeight"
+          [expandedHeight]="matExpansionHeaderHeight" fxLayout fxLayout.xs="row" fxLayoutGap="10px">
+          <div fxFlex="80%" class="panel-heading">Quote Response</div>
+        </mat-expansion-panel-header>
+        <mat-panel-description class="remove-margin">
+          <app-candidate-quote-info [quoteResponse]="quoteResponseInfo"  class="full-stretch">
+          </app-candidate-quote-info>
+        </mat-panel-description>
+      </mat-expansion-panel>
+    </mat-accordion>
+    
+  </div>
+  <div class="budget-footer" *ngIf="isQuotePending" >
+
+    <div class="item">
+      <button mat-button class="mat-button contained-button" (click)="onAcceptClick()" id="Authorize">
+        Accept
+      </button> &nbsp;&nbsp;
+      <button mat-button class="mat-button contained-button" (click)="openQuoteRequestResponseDialog()" id="Authorize">
+        Accept & Respond
+      </button>
+    </div>
+
+  </div>
+
+  <div class="budget-footer" *ngIf="(!isQuotePending) && (isQuoteAccepted)">
+
+    <div class="item">
+      <button mat-button class="mat-button contained-button" (click)="openQuoteRequestResponseDialog()" id="Authorize">
+        Respond to Quote
+      </button>
+    </div>
+
+  </div>
+</div>

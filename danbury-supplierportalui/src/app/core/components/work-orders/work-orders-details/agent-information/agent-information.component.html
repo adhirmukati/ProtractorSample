@@ -1,0 +1,53 @@
+<div class="authorize-dialog">
+        <div mat-dialog-title disableTypography fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px"
+            fxLayoutGap.xs="0em">
+            <div class="candidate-dialogtitle">
+                <span>{{isEmptyAgentInfo ? 'Add Agent Contact Details' : 'Edit Agent Contact Details' }}</span>
+            </div>
+            <a class="close-icon" id="close_icon" (click)="close()">
+                <mat-icon>close</mat-icon>
+            </a>
+        </div>
+        <div mat-dialog-content>
+            <form fxLayout="column" class="formGroup" [formGroup]="agentInformationForm" (ngSubmit)= "submitAgentDetails()" fxLayoutGap="1em">
+                <div>
+                    <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayout.xs="column"
+                    fxLayoutGap.xs="0em">
+                    <div fxFlex="100%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+                    <mat-form-field> 
+                        <input matInput type="text" formControlName="fullName" placeholder="Contact Full Name"/> 
+                        <mat-error *ngIf="agentInformationForm && agentInformationForm.get('fullName').hasError('required')">You must enter Contact Full Name</mat-error>
+                        <mat-error *ngIf="agentInformationForm && agentInformationForm.get('fullName').hasError('pattern')">Special characters are not allowed</mat-error>
+                        <mat-error *ngIf="agentInformationForm && agentInformationForm.get('fullName').hasError('minlength')">Contact Full Name should be more than one character</mat-error>
+                    </mat-form-field>
+                    </div>
+                    </div>
+                </div>
+                <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="1em" fxLayout.xs="column"
+                    fxLayoutGap.xs="1em">
+                    <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+                <mat-form-field>
+                    <input matInput type="text" formControlName="emailAddress" placeholder="Email Address"/>
+                    <mat-error *ngIf="agentInformationForm && agentInformationForm.controls['emailAddress'].hasError('required')">You must enter email address</mat-error>
+                    <mat-error *ngIf="agentInformationForm && agentInformationForm.controls['emailAddress'].hasError('pattern')">You must enter valid email address</mat-error>
+                </mat-form-field> 
+                </div>
+                <div fxFlex="50%" fxLayout="column-reverse" fxLayoutALign="space-between" fxLayoutGap="1em" fxFlex.xs="100%">
+                <mat-form-field> 
+                    <input matInput type="text" appInputPhoneFormat formControlName="phoneNumber" placeholder="Phone #" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode<=57"/>
+                    <mat-error *ngIf="agentInformationForm && agentInformationForm.controls['phoneNumber'].hasError('required')">You must enter phone number</mat-error>
+                    <mat-error *ngIf="agentInformationForm && agentInformationForm.controls['phoneNumber'].hasError('minlength')">You must enter valid phone number</mat-error>
+                </mat-form-field>
+                </div>
+                </div>
+                
+                
+        </form>
+        </div>
+        <div mat-dialog-actions>
+            <div class="statusBtn">
+                <button class="uppercase" type="button" mat-button (click)="close()">Cancel</button>
+                <button type="submit"  mat-button class="mat-button contained-button" [disabled] ="agentInformationForm && agentInformationForm.invalid" (click)="submitAgentDetails()">Save</button>
+            </div>
+        </div>
+    </div>

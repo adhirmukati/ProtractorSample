@@ -1,0 +1,27 @@
+<div class="authorize-dialog">
+  <div mat-dialog-title disableTypography fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px"
+    fxLayoutGap.xs="0em">
+    <div class="candidate-dialogtitle">
+      <span>Inactive Supplier Contacts</span>
+    </div>
+    <a class="close-icon" id="close_icon" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </a>
+  </div>
+  <div mat-dialog-content>
+    <form fxLayout="column" class="middle-section" (ngSubmit)="inactivateSupplierContacts()" novalidate>
+      <p>You are about to inactivate the following supplier contacts:</p>
+      <p class="contact-items" *ngFor="let contact of data.selected">{{contact.fullName}}</p>
+      <p>They will no longer have access to Mobilify.</p>
+      <div mat-dialog-actions>
+        <div class="statusBtn">
+          <button class="uppercase" mat-button (click)="close()">Cancel</button>
+          <button type="submit" mat-button class="mat-button contained-button">Inactivate
+            <span *ngIf="data.selected.length>1">{{data.selected.length}}&nbsp;Contacts</span>
+            <span *ngIf="data.selected.length==1">Contact</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+ </div>

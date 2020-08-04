@@ -1,0 +1,277 @@
+@import '~@angular/material/theming';
+
+$typography: mat-typography-config(
+  $font-family: 'Avenir-Book, Roboto, Helvetica, Helvetica Neue, Times New Roman, Times',
+  $display-1: mat-typography-level(10px, 24px, 500),
+  $display-2: mat-typography-level(16px, 24px, 500),
+  $display-3: mat-typography-level(16px, 24px, 500),
+  $display-4: mat-typography-level(16px, 24px, 500),
+  $headline: mat-typography-level(32px, 48px, 700),
+  $title: mat-typography-level(16px, 24px, 700),
+  $subheading-1: mat-typography-level(32px, 48px, 700),
+  $subheading-2: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(14px, 24px, 500),
+  $body-2: mat-typography-level(14px, 24px, 600),
+  $caption: mat-typography-level(14px, 24px, 100),
+  $button: mat-typography-level(14px, 36px, 300),
+  // Note: middle value is line-height as a % of font size
+  $input: mat-typography-level(14px, 1.1, 600)
+);
+
+@include mat-base-typography($typography);
+@include mat-checkbox-typography($typography);
+@include angular-material-typography($typography);
+@include mat-core($typography);
+
+$light-accent-text: #ffffff;
+
+// code from: http://stackoverflow.com/questions/41440998/angular2-material-real-custom-theming
+// define a real custom palette (using http://mcg.mbitson.com)
+/* For use in src/lib/core/theming/_palette.scss */
+$md-appblue: (
+    50 : #e8eef7,
+    100 : #c5d5ea,
+    200 : #9eb9dc,
+    300 : #779cce,
+    400 : #5987c4,
+    500 : #3c72b9,
+    600 : #366ab2,
+    700 : #2e5faa,
+    800 : #2755a2,
+    900 : #1a4293,
+    A100 : #cadaff,
+    A200 : #97b6ff,
+    A400 : #6493ff,
+    A700 : #4b81ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-mint: (
+  50 : #e0f0f2,
+  100 : #b3dadd,
+  200 : #80c1c7,
+  300 : #4da8b1,
+  400 : #2696a0,
+  500 : #00838f,
+  600 : #007b87,
+  700 : #00707c,
+  800 : #006672,
+  900 : #005360,
+  A100 : #90edff,
+  A200 : #5de5ff,
+  A400 : #2adcff,
+  A700 : #11d8ff,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-accent-text,
+    600: $dark-primary-text,
+    700: $dark-primary-text,
+    800: $dark-primary-text,
+    900: $light-accent-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text
+  )
+);
+
+$md-appmint: (
+  50 : #eef6f5,
+  100 : #d5eae7,
+  200 : #badcd7,
+  300 : #9ecdc6,
+  400 : #89c3ba,
+  500 : #74b8ae,
+  600 : #6cb1a7,
+  700 : #61a89d,
+  800 : #57a094,
+  900 : #449184,
+  A100 : #e9fffb,
+  A200 : #b6fff2,
+  A400 : #83ffe9,
+  A700 : #69ffe5,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #000000,
+      600 : #000000,
+      700 : #000000,
+      800 : #000000,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+$md-appazure: (
+    50 : #e1f5fe,
+    100 : #b3e5fc,
+    200 : #81d4fa,
+    300 : #4fc3f7,
+    400 : #29b6f6,
+    500 : #03a9f4,
+    600 : #03a2f3,
+    700 : #0298f1,
+    800 : #028fef,
+    900 : #017eec,
+    A100 : #ffffff,
+    A200 : #e0efff,
+    A400 : #add4ff,
+    A700 : #93c7ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+
+);
+
+// Based on Cartus online's color scheme
+$md-apporange: (
+    50 : #fef0e6,
+    100 : #fbd8c0,
+    200 : #f9bf96,
+    300 : #f7a56c,
+    400 : #f5914d,
+    500 : #f37e2d,
+    600 : #f17628,
+    700 : #ef6b22,
+    800 : #ed611c,
+    900 : #ea4e11,
+    A100 : #ffffff,
+    A200 : #ffeae4,
+    A400 : #ffc4b1,
+    A700 : #ffb197,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-appgreen: (
+    50 : #eef7e7,
+    100 : #d4eac3,
+    200 : #b8dd9b,
+    300 : #9bcf72,
+    400 : #85c454,
+    500 : #70ba36,
+    600 : #68b330,
+    700 : #5dab29,
+    800 : #53a322,
+    900 : #419416,
+    A100 : #d9ffc9,
+    A200 : #b6ff96,
+    A400 : #93ff63,
+    A700 : #81ff49,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// The app Red is based on Materials pallet, however it is two pallet level deepers
+// in order to pass accessibility scan results(Mat 700 == app 500)
+$md-appred: (
+    50 : #fae6e6,
+    100 : #f2c1c1,
+    200 : #e99797,
+    300 : #e06d6d,
+    400 : #da4e4e,
+    500 : #d32f2f,
+    600 : #ce2a2a,
+    700 : #c82323,
+    800 : #c21d1d,
+    900 : #b71212,
+    A100 : #ffe7e7,
+    A200 : #ffb4b4,
+    A400 : #ff8181,
+    A700 : #ff6868,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// mandatory stuff for theming
+$app-primary: mat-palette($md-appblue);
+$app-accent: mat-palette($md-mint);
+$app-warn: mat-palette($md-appred);
+$app-foreground: mat-palette($md-appazure);
+
+// include the custom theme components into a theme object
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+// Content defaults
+$main-content-default-margin: 2em;
+$main-content-default-margin-mobile: 2em 1em;

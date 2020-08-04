@@ -1,0 +1,25 @@
+<div class="settingsContainer" flexLayout fxLayout.xs="column">
+    <div mat-dialog-title disableTypography className={styles.dialogTitle} fxLayout="row" fxLayoutAlign="space-between"
+        fxLayoutGap="20px">
+        <h2>Session Time out</h2>
+        <button id="close" mat-icon-button (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <mat-dialog-content>
+        <div class="settings-tablecol">
+            <div class="settings-scrolldiv">
+                you will be timed out in
+                {{(countMinutes !== 0 ? + countMinutes+' Minute'+(countMinutes > 1 ? 's ': ' '): '') + countSeconds+' seconds'}}
+                <p>
+                    <mat-progress-bar class="example-margin" [color]="color" [mode]="mode" [value]="progressCount"
+                        [bufferValue]="300"></mat-progress-bar>
+                </p>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button color="primary" id="reset">Refresh</button>
+        <button class="contained-button" id="save">Logout</button>
+    </mat-dialog-actions>
+</div>

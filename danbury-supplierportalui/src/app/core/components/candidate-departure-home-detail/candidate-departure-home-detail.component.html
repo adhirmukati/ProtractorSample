@@ -1,0 +1,42 @@
+<div class="container" fxFlex="100%" fxLayout fxLayout.xs="column" fxLayoutGap="32px" fxLayoutGap.xs="4px">
+    <div fxFlex="50%" fxFlex.xs="100%" class="tile-box">
+        <div class="tile-flex home-detail auto-size">
+            <div>
+                <mat-icon *ngIf="housingType==='House'" class="cartus-icon" svgIcon="house" aria-hidden="false"
+                    aria-label="House"></mat-icon>
+                <mat-icon *ngIf="housingType==='Townhouse'" class="cartus-icon" svgIcon="town" aria-hidden="false"
+                    aria-label="Townhouse"></mat-icon>
+                <mat-icon *ngIf="housingType != 'House' && housingType != 'Townhouse'" class="cartus-icon" svgIcon="apartment"
+                    aria-hidden="false" aria-label="Apartment"></mat-icon>
+            </div>
+            <div>
+                <p>
+                    <span class="own-rent">{{ ownerType }}</span>
+                    <span class="type space">{{ housingType }}</span>
+                    <span class="space">located at:</span>
+                </p>
+                <p>
+                    <span class="street-address">{{ departureAddress?.streetAddress }}</span>
+                </p>
+                <p>
+                    <span class="city-zip">{{ departureAddress?.city }}, {{ departureAddress?.state }}
+                        {{ departureAddress?.zipcode }} {{ departureAddress?.country }}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div fxFlex="50%" fxFlex.xs="100%" class="tile-box">
+        <div class="tile-flex home-detail">
+            <div>
+                <mat-icon class="cartus-icon skip-fill" svgIcon="baseline-info" aria-hidden="false" aria-label="info">
+                </mat-icon>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label># of Rooms:</mat-label>
+                    <input class="totalPeopleCount" matInput placeholder="Total People Moving" readonly [value]="noOfRooms">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="container" fxFlex="100%" fxLayout="row" fxLayout.xs="column" fxLayoutGap="32px" fxLayoutGap.xs="4px">
+    
+    
+    <div fxFlex="20%" fxFlex.xs="100%" fxLayout="column" fxLayout.xs="column" fxLayoutGap="32px"  >
+        
+            <mat-form-field class="quote-mat-form">
+                <mat-label>Reference #</mat-label>
+                <input  matInput readonly [value]="quoteResponseInfo?.referenceNumber">
+                <mat-hint align="end" class="hint">Order # from your internal system</mat-hint>
+            </mat-form-field>
+        
+        
+            <mat-form-field class="quote-mat-form">
+                <mat-label>Move Type</mat-label>
+                <input  matInput readonly [value]="moveType">
+            </mat-form-field>
+        
+
+    </div>
+    <div fxFlex="calc(80%-32px)" fxFlex.xs="100%" fxLayout="column" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutGap.xs="14px">
+    
+        
+        <div fxFlex="100%" fxLayout="row" fxLayout.xs="column" fxFlex.xs=100% fxLayoutGap="10px" fxLayoutGap.xs="14px"> 
+            
+            <div fxFlex="61%" fxFlex.xs="100%"  fxLayout="row" fxLayout.xs="column" >
+                <div  fxFlex="100%" fxLayout="column" fxLayout.xs="column">
+                    <p class="sectionSubTitle">Van Line Move Details</p>
+                    <mat-card class="quoteTile quoteVaneLineTile" fxFlex="100%" fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutGap.xs="0px">
+                     
+                        <div fxFlex="33%" fxFlex.xs="100%">
+                            <mat-form-field class="quoteCostMatFormField quote-mat-form">
+                                <mat-label>Van Line Move Cost</mat-label>
+                                <input  matInput readonly [value]="vaneLineCost">
+                            </mat-form-field>
+                       </div>
+                       <div fxFlex="33%" fxFlex.xs="100%">
+                            <mat-form-field class="quoteCostMatFormField quote-mat-form">
+                                <mat-label>Estimated Distance</mat-label>
+                                <input  matInput readonly [value]="estimatedDistance">
+                            </mat-form-field>
+                       </div>
+                       <div fxFlex="33%" fxFlex.xs="100%">
+                            <mat-form-field class="quoteCostMatFormField quote-mat-form">
+                                <mat-label>Estimated Weight</mat-label>
+                                <input  matInput readonly [value]="estimatedWeight">
+                            </mat-form-field>
+                       </div>
+                    
+                    </mat-card>
+                </div>
+                
+            </div>
+
+
+
+            
+            <div fxFlex="calc(39%-10px)" fxFlex.xs="100%" fxLayout="row" fxLayout.xs="column" >
+                <div  fxFlex="100%" fxLayout="column" fxLayout.xs="column">
+                    <p class="sectionSubTitle">Non-Discountable Details</p>
+                    <mat-card class="quoteTile" fxFlex="100%" fxLayout="row" fxLayout.xs="row" fxLayoutGap="10px" fxLayoutGap.xs="0px"> 
+                        <div fxFlex="50%" fxFlex.xs="100%">
+                            <mat-form-field class="quoteCostMatFormField quoteStorageFormField quote-mat-form">
+                                <mat-label>Speciality Services</mat-label>
+                                <input  matInput readonly value="N/A" class="naInput">
+                            </mat-form-field>
+                       </div>
+                        <div fxFlex="50%" fxFlex.xs="100%">
+                            <mat-form-field class="quoteCostMatFormField quoteStorageFormField quote-mat-form">
+                                <mat-label>Other Services</mat-label>
+                                <input  matInput readonly value="N/A" class="naInput">
+                            </mat-form-field>
+                        </div>
+                    </mat-card>
+                </div>
+                
+            </div>
+
+        </div>
+
+
+
+
+        
+        <div fxFlex="100%"  fxLayout="row" fxFlex.xs=100% fxLayoutGap="10px" fxLayoutGap.xs="4px">
+            <div  fxFlex="100%" fxLayout="column" fxLayout.xs="column">
+                <p class="sectionSubTitle">Storage Details</p>
+                <mat-card *ngIf="(quoteResponseInfo?.bidAmountStorage) && (quoteResponseInfo?.bidAmountStorage!='0')" class=" quoteTile" fxFlex="100%" fxLayout="row" fxLayout.xs="row">
+                    <div fxFlex="30%" fxFlex.xs="100%">
+                        <mat-form-field class="quoteStorageFormField quote-mat-form">
+                            <mat-label>Storage Cost</mat-label>
+                            <input matInput readonly [value]="storageCost">
+                        </mat-form-field>
+                    </div>                   
+                    <div fxFlex="30%" fxFlex.xs="100%">
+                        <mat-form-field class=" quoteStorageFormField quote-mat-form">
+                            <mat-label>Days in Storage</mat-label>
+                            <input *ngIf="(quoteResponseInfo?.daysInStorage)" matInput readonly [value]="daysInStorage">
+                            <input *ngIf="(!quoteResponseInfo?.daysInStorage)" matInput readonly value="N/A" class="naInput">
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+                <mat-card *ngIf="((!quoteResponseInfo?.bidAmountStorage)|| (quoteResponseInfo?.bidAmountStorage==='0'))" class="noneTile quoteTile" fxFlex="100%" fxLayout="row" fxLayout.xs="row" fxLayoutGap="32px" fxLayoutGap.xs="15px">
+                None
+                </mat-card>
+            </div>
+            
+        </div>
+        
+
+
+    </div>
+
+
+
+</div>

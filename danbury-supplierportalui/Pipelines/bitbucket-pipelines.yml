@@ -1,0 +1,26 @@
+image: openjdk
+
+pipelines:
+  default:
+    - step:
+        name: Setup environment
+        script:
+          - echo 'Starting the pipeline!'
+          - apt-get update
+          - apt-get upgrade
+    - step:
+        name: Create code archive
+        script:
+          - zip -r upload.zip WebGoat-8.0.0.M25 -x
+          - wget https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/19.2.5.6/vosp-api-wrappers-java-19.2.5.6.jar -O VeracodeJavaAPI.jar
+    - step:
+        name: Upload archive to Veracode
+        script:
+          - wget https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/19.2.5.6/vosp-api-wrappers-java-19.2.5.6.jar -O VeracodeJavaAPI.jar
+          - java -jar VeracodeJavaAPI.jar 
+              -vid $VERACODE_API_ID 
+              -vkey $VERACODE_API_KEY 
+              -action uploadandscan 
+              -appname $VERACODE_APP_NAME 
+              -createprofile false 
+              -filepath upload.zip

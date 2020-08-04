@@ -1,0 +1,322 @@
+@import '../sass/cartus-palette.scss';
+// Dialog style starts
+
+.dialogMainContainer {
+  // Dialog title header
+  .candidate-dialogtitle {
+    font-family: 'Avenir-Roman', sans-serif;
+    font-size: 1.5em;
+    color: map-get($cartus-palette, 'cartus_gray');
+    font-weight: 100;
+  }
+  // Dialog input
+  input {
+    color: map-get($cartus-palette, 'cartus_gray');
+    font-weight: 100;
+    font-family: 'Avenir-Book', sans-serif;
+    //  font-size: 1.2em;
+    line-height: 1.0625em;
+    &:read-only {
+      color: #000000;
+      opacity: 0.38;
+    }
+  }
+  .mat-select-disabled {
+    cursor: not-allowed;
+  }
+  // dialog form fields
+  .mat-form-field,
+  .mat-select {
+    width: 100%;
+    font-family: 'Avenir-Book', sans-serif;
+    line-height: 1.5625em;
+  }
+  // Dialog close icon
+  .close-icon {
+    cursor: pointer;
+    .mat-icon {
+      font-size: 1.6em;
+      color: #949494;
+    }
+  }
+  .modal-rightnavarrow {
+    position: relative;
+    color: #888888 !important;
+    width: auto;
+    height: auto;
+    font-size: 4em;
+    top: 0em;
+    left: -0.2em;
+    @media screen and (max-width: 600px) {
+      left: 0em;
+    }
+  }
+  .hide-arrow-xs {
+    display: block;
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+  }
+  // Dialog container
+  .mat-dialog-container {
+    border-radius: 10px;
+    padding: 1em;
+    @media screen and (max-width: 767px) {
+      overflow: hidden;
+    }
+    @media screen and (min-width: 768px) {
+      .candidate-formcontainer {
+        // min-height: 25.875em;
+        min-height: 15.875em;
+        overflow: hidden;
+      }
+      overflow: hidden;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1199px) {
+      width: 34.65em;
+    }
+    .candidate-formcontainer {
+      @media screen and (min-width: 1200px) {
+        width: 41.5em;
+      }
+    }
+  }
+  // Dialog content
+  .mat-dialog-content {
+    padding: 1em;
+    font-family: 'Avenir-Roman', sans-serif;
+    font-size: 1em;
+    color: map-get($cartus-palette, 'cartus-gray');
+    line-height: 1.5625em;
+    .mat-icon {
+      color: map-get($cartus-palette, 'cartus_dark_accent_blue');
+    }
+    p:first-of-type {
+      margin: 0em;
+    }
+    @media screen and (min-width: 768px) {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+  }
+  //dialog action buttons
+  .mat-dialog-actions {
+    margin-bottom: 0;
+    padding-top: 0.2em;
+  }
+  .candidate-highlight {
+    background: #f0f0f0 0% 0% no-repeat padding-box;
+    width: 15.5em;
+    padding: 0 0.125em;
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
+  }
+  // Mobile view Dialog
+  @media screen and (max-width: 599px) {
+    max-width: 100% !important;
+    height: 100%;
+    width: 100%;
+    .mat-dialog-container {
+      border-radius: 0;
+      width: 100%;
+      box-shadow: none;
+      border: none;
+    }
+    .housing-container,
+    .people-container {
+      margin-top: 0.9em;
+    }
+  }
+  .addcandidate-toppadding {
+    margin-top: 0.9em;
+  }
+}
+// .empdialogMainContainer{
+//   @extend .dialogMainContainer;
+//   input {
+//     &:read-only {
+//       color: map-get($cartus-palette, 'cartus_gray');
+//       opacity: 1;
+//       font-size: 1rem;
+//     }
+//   }
+// }
+// White background highlight container
+// Button container
+.statusBtn {
+  @media screen and(min-width:768px) {
+    display: -webkit-flex;
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  .leftBtn {
+    @media screen and(min-width:768px) {
+      margin-right: auto;
+    }
+    @media screen and(max-width:600px) {
+      width: 100%;
+      margin-bottom: 0.3125em;
+    }
+  }
+  .approveBtn {
+    border-radius: 5px 0 0 5px;
+  }
+  span.share .material-icons {
+    color: map-get($cartus-palette, 'cartus_primary_blue_contrast');
+    position: relative;
+    top: 0.125em;
+    @media screen and (max-width: 600px) {
+      top: 0.325em;
+    }
+  }
+  .shareBtn {
+    background-color: map-get($cartus-palette, 'cartus_accent_blue');
+    border-radius: 0 5px 5px 0;
+    border: 0;
+    margin-left: 0.0625em;
+    @media screen and (max-width: 600px) {
+      border-left: 1px solid map-get($cartus-palette, 'cartus_nav_tile');
+      min-width: 1em;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      height: 2.5em;
+      min-width: 1em;
+      line-height: 3em;
+    }
+  }
+  button.shareBtn {
+    height: 2.5em;
+    margin-left: 1em;
+  }
+}
+.candidate-name-highlightbg {
+  background: #f0f0f0 0% 0% no-repeat padding-box;
+  width: 15.5em;
+  padding: 0 12px;
+  margin-bottom: 0.2em;
+  margin-top: 0.2em;
+  color: map-get($cartus-palette, 'cartus_gray');
+  font-family: 'Avenir-Book',sans-serif;
+  line-height: 1.5em;
+}
+.content-wrapper-container {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 7.9375em);
+  @media screen and (max-width: 767px) {
+    min-height: calc(100vh - 7.3125em);
+  }
+}
+.middle-section {
+  flex: 1 0 auto;
+}
+.candidate-highlight-whitebg {
+  background: #fff;
+  padding: 1.4375em 1em;
+  box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.251);
+  .cost-model-btn-txt {
+    vertical-align: baseline !important;
+  }
+  @media screen and (max-width: 767px) {
+    margin-right: -1em;
+    margin-left: -1em;
+  }
+  @media screen and (min-width: 768px) {
+    margin-right: -1.125em;
+    margin-left: -1.125em;
+  }
+  margin-bottom: -1em;
+  .statusBtn {
+    justify-content: flex-start;
+    .mat-button {
+      margin-right: 1em;
+      padding: 0 1em;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    @media screen and (max-width: 412px) {
+      .mat-button {
+        font-size: 1em !important;
+        min-width: 7em !important;
+      }
+    }
+    @media screen and (min-width: 413px) and (max-width: 767px) {
+      .mat-button {
+        margin-right: 0.5em;
+        min-width: 9em !important;
+        font-size: 1.25em !important;
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .candidate-formcontainer {
+    flex-direction: column;
+    min-height: 100%;
+  }
+}
+// Withdraw Container
+.withdraw-popup-content {
+  p {
+    padding-bottom: 0.5em;
+    color: map-get($cartus-palette, 'cartus_gray');
+    font-family: 'Avenir-Roman',sans-serif;
+  }
+}
+/** employee dialog scss starts **/
+$employee-dialog-width: 22em;
+.empdialogMainContainer{
+    @extend .dialogMainContainer;
+    input {
+      &:read-only {
+        color: map-get($cartus-palette, 'cartus_gray');
+        opacity: 1;
+        font-size: 1rem;
+      }
+    }
+  .mat-dialog-container{
+    @media screen and (min-width: 768px) and (max-width: 1199px) {    
+             width:24em !important;
+        .empsettingsContainer{
+              width:$employee-dialog-width;
+          .settings-tablecol{
+              width:$employee-dialog-width;
+          }
+      }
+       }
+      @media screen and (min-width:1200px){
+      .empsettingsContainer{
+             width:$employee-dialog-width;
+          .settings-tablecol{
+              width:$employee-dialog-width;
+          }
+      }
+  }
+   @media screen and (max-width:600px){
+       .empsettingsContainer{
+       .settings-tablecol{
+                  height:70%;
+        }
+     }
+     }
+}
+}
+/** employee dialog scss ends **/
+@media screen and (min-width: 768px) {
+  .dialogMainContainer{
+    width: 40%;
+  }
+  .edit-key-dates{
+    width: 63vw;
+  }
+  
+}
+@media screen and (max-width:600px){
+  .dialogMainContainer{
+    width: 100%;
+  }
+}

@@ -1,0 +1,112 @@
+<ngx-spinner type="ball-spin-clockwise-fade" size="medium"></ngx-spinner>
+<section class="content_table">
+  <div class="totalWorkorder"> {{ totalWorkOrder }} Work Orders </div>
+  <br/>
+  <div>   
+    <!---Search box begins-->   
+    <section class="search_table">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span fxFlex="60%" fxLayoutAlign="start">
+            <mat-form-field appearance="outline" class="search-within-table search-box">
+              <mat-icon matPrefix>search</mat-icon>
+              <input matInput id="searchInput" #searchInput autocomplete="off" placeholder="Search within table for..." width="80%" fxFlex.sm="65"
+               aria-label="Search within table" [(ngModel)]="filterText" (input)="applyFilter($event.target.value)">
+              <button mat-button *ngIf="filterText" matSuffix mat-icon-button aria-label="Clear" (click)="resetList($event.target.value)">
+                <mat-icon id="search_icon">close</mat-icon>
+              </button>
+            </mat-form-field>
+            
+            <span fxLayoutAlign="start center" >
+              <a id="selectColumns" (click)="openTableOptions()">
+                <mat-icon matTooltip="Select columns" matTooltipPosition="right" class="viewsetting-icon">view_column</mat-icon>
+              </a>
+            </span>
+        </span>        
+      </div>
+    </section> 
+    <!--Search box ends-->
+  </div>
+  <br/>
+  <div>
+    <section class="mat-elevation-z8">
+      <div *ngIf="workOrders.length>0 && dataSource.filteredData.length>0" style="overflow:auto;">
+        <table mat-table [dataSource]="dataSource" aria-describedby="table-candidates" matSort [matSortActive]="sortBy"
+          matSortDirection="desc" (matSortChange)="sortData($event)">
+          <!-- Full Name Column -->
+          <ng-container matColumnDef="partyName" sticky>
+            <th id="" mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
+            <td mat-cell *matCellDef="let element" class="cLinks" 
+              (click)="navigateToWorkOderDetails(element);return">
+              <span class="text-as-link" [innerHTML]="((element.partyName) +', ' +(element.orderedBy.partyName.names[1])) | highlightSearch: filterText"></span> </td>
+          </ng-container>         
+          <!-- order Column -->
+          <ng-container matColumnDef="orderReference">
+            <th id='' mat-header-cell *matHeaderCellDef mat-sort-header> Order # </th>
+            <td mat-cell *matCellDef="let element">
+              <span [innerHTML]="(element.orderReference? element.orderReference : '-')| highlightSearch: filterText"></span><br />              
+            </td>
+          </ng-container>
+
+          <!-- Departure column -->
+          <ng-container matColumnDef="departureState">
+            <th id="" mat-header-cell *matHeaderCellDef mat-sort-header> Departure</th>
+            <td mat-cell *matCellDef="let element">
+              <span [innerHTML]="(element.departureState +', ' +element.departureCity) | highlightSearch: filterText"></span>
+            </td>
+          </ng-container>
+          <!-- Departure column -->
+          <!-- Destination Column -->
+          <ng-container matColumnDef="destinationState">
+            <th id="" mat-header-cell *matHeaderCellDef mat-sort-header> Destination </th>
+              <td mat-cell *matCellDef="let element" 
+              [innerHTML]="(element.destinationState +', ' +element.destinationCity) | highlightSearch: filterText">
+            </td>
+          </ng-container>
+          <!-- Destination Column -->
+          <!-- Email Column -->
+          <ng-container matColumnDef="preferredEmailAddress">
+            <th id="" mat-header-cell *matHeaderCellDef mat-sort-header>Email Address</th>
+            <td mat-cell *matCellDef="let element" [innerHTML]="(element.preferredEmailAddress  ? element.preferredEmailAddress : '-') | highlightSearch: filterText"></td>
+          </ng-container>
+
+           <!-- Phone Column -->
+           <ng-container matColumnDef="preferredPhoneNumber">
+            <th id="" mat-header-cell *matHeaderCellDef mat-sort-header>Phone #</th>
+            <td mat-cell *matCellDef="let element" [innerHTML]="(element.preferredPhoneNumber  ? element.preferredPhoneNumber  : '-') | highlightSearch: filterText"></td>
+          </ng-container>
+
+           <!-- Company -->
+           <ng-container matColumnDef="company">
+            <th id="" mat-header-cell *matHeaderCellDef mat-sort-header>Company</th>
+            <td mat-cell *matCellDef="let element" [innerHTML]="(element.company? element.company : '-') | highlightSearch: filterText"></td>
+          </ng-container> 
+           <!-- AgentName -->
+           <ng-container matColumnDef="bookedWithContactName">
+            <th id="" mat-header-cell *matHeaderCellDef mat-sort-header>Agent Name</th>
+            <td mat-cell *matCellDef="let element" [innerHTML]="(element.bookedWithContactName ? element.bookedWithContactName  : '-') | highlightSearch: filterText"></td>
+          </ng-container> 
+                    
+          <!-- Status Column -->   
+          <ng-container matColumnDef="workOrderStatusDate" stickyEnd>
+            <th id="" mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let element">
+              <span [innerHTML]="(element.workOrderStatus ? element.workOrderStatus : '-') | highlightSearch: filterText"></span><br/>
+              <span class="listStatusDate" [innerHTML]="element.workOrderStatusDate? ('on&nbsp;' + (element.workOrderStatusDate | date: 'yyyy-MM-dd')) : ''"></span>
+            </td>
+          </ng-container>
+          <!-- Status Column -->          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <div [hidden]="!(workOrders.length>0 && dataSource.filteredData.length>0)">
+        <mat-paginator [length]="pageInfo.totalCount" [pageSize]="pageInfo.pageSize" [pageSizeOptions]="[5, 10, 20]"
+          (page)="onPagination($event)"></mat-paginator>
+      </div>
+    </section>
+  </div>
+  <div [hidden]="workOrders.length>0 && dataSource.filteredData.length>0" class="invalidData">
+    No records found
+  </div>
+</section>
+

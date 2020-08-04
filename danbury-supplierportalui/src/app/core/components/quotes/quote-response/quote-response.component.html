@@ -1,0 +1,133 @@
+<div class="authorize-dialog">
+    <div mat-dialog-title disableTypography fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px"
+       fxLayoutGap.xs="0em">
+       <div class="candidate-dialogtitle">
+          <span>Quote Response</span>
+       </div>
+       <a class="close-icon" id="close_icon" (click)="close()">
+          <mat-icon>close</mat-icon>
+       </a>
+    </div>
+    <div mat-dialog-content class="quoteform">
+       <form fxLayout="column" class="middle-section" [formGroup]="editCandidateForm" (ngSubmit)="submitQuoteResponse()" novalidate>
+        <div  class="form-group middle-section" >
+            <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column"
+                fxLayoutGap.xs="0em">
+                <div fxFlex="50%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+                    <mat-form-field>
+                    <input matInput type="text" class="form-control"  formControlName="reference" placeholder="Reference #"/> 
+                    <mat-hint align="end" class="hint">Order # from your internal system</mat-hint>
+                    <mat-error>You must enter reference #</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="50%" fxLayout.xs="column" fxFlex.xs="100%">
+                    <mat-form-field>
+                    <mat-label>Move Type</mat-label>
+                    <mat-select class="form-control" [(value)]="selected" formControlName="moveType">
+                        <mat-option [value]="moveType" *ngFor="let moveType of MoveType">{{ moveType }}</mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <p>Van Line Move Details</p>
+        <mat-card class="quotematcard">
+            <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column"
+                fxLayoutGap.xs="0em">
+                <div fxFlex="47%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+                    <mat-form-field class="quotematformfield">
+                    <input matInput type="text" [appAmountFormat]="editCandidateForm.controls['bidAmount']" onkeypress="return event.charCode >= 48 && event.charCode<=57" min="1" 
+                    formControlName="bidAmount" placeholder="Van Line Move Cost"/><span class="units">USD</span>
+                    <mat-error *ngIf="editCandidateForm.get('bidAmount').hasError('required')" >Van line move cost must be entered</mat-error>
+                    <mat-error *ngIf="editCandidateForm.get('bidAmount').hasError('valueInvalid')">Value amount must be numeric</mat-error>
+                    <mat-error *ngIf="editCandidateForm.get('bidAmount').hasError('min')">Van line move cost must be entered</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="47%" fxLayout="column-reverse" fxLayoutALign="space-between" fxLayoutGap="2em" fxFlex.xs="100%">
+                    <mat-form-field class="quotematformfield"> 
+                    <input matInput type="text" [appAmountFormat]="editCandidateForm.controls['estimatedDistance']" onkeypress="return event.charCode >=  48 && event.charCode<=57" min="1"
+                    formControlName="estimatedDistance"  placeholder="Estimated Mileage"/><span class="units">Miles</span>
+                    <mat-error *ngIf="editCandidateForm.get('estimatedDistance').hasError('required')">Estimated mileage must be entered</mat-error>
+                    <mat-error *ngIf="editCandidateForm.get('estimatedDistance').hasError('valueInvalid')">Estimated mileage must be numeric</mat-error>
+                    <mat-error *ngIf="editCandidateForm.get('estimatedDistance').hasError('min')">Estimated mileage must be entered</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <br/>
+            <div class="input-row estwhgt" fxLayout="row" fxLayoutAlign="column-end" fxLayoutGap="2em" fxLayout.xs="column"
+                fxLayoutGap.xs="0em">
+                <div fxFlex="47%" fxLayoutAlign="column-end" fxLayout.xs="column" fxFlex.xs="100%">
+                    <mat-form-field class="quotematformfield">
+                    <input matInput type="text" [appAmountFormat]="editCandidateForm.controls['estimatedWeight']" onkeypress="return event.charCode >= 48 && event.charCode<=57" min="1"
+                    formControlName="estimatedWeight"  placeholder="Estimated Weight"/><span class="units">Lb</span>
+                    <mat-error *ngIf="editCandidateForm.get('estimatedWeight').hasError('required')">Estimated weight must be entered</mat-error>
+                    <mat-error *ngIf="editCandidateForm.get('estimatedWeight').hasError('valueInvalid')">Estimated weight must be numeric</mat-error>
+                    <mat-error *ngIf="editCandidateForm.get('estimatedWeight').hasError('min')">Estimated weight must be entered</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-card>
+        <br/>
+        <p *ngIf="storage.expanded" class="storageTitle">Storage Details</p>
+        <mat-accordion  class="quotematcard">
+            <mat-expansion-panel #storage (opened)="openStorage()" [expanded]="isStorageOpen" (closed)="closeStorage()" hideToggle>
+                <mat-expansion-panel-header [collapsedHeight]="matCollapseHeaderHeight"
+                [expandedHeight]="matExpansionHeaderHeight">
+                <mat-panel-title *ngIf="!storage.expanded">
+                    <span class="panel-heading">Add Storage Details</span>
+                </mat-panel-title>         
+                        
+                <mat-icon *ngIf="!storage.expanded" class="maticon">add_circle_outline</mat-icon>                
+                
+                </mat-expansion-panel-header>
+
+                <div class="middle-section">
+                    <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="row"
+                    fxLayoutGap.xs="0em">
+                    <div fxFlex="95%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="92%">
+
+                    </div>
+                    <div fxFlex="5%" fxLayoutAlign="column-end" fxLayout.xs="column"  fxFlex.xs="8%">
+                        <mat-icon  class="maticon storagecloseicon" (click)="toggleStoragePanel()" >highlight_off</mat-icon>
+                    </div>
+                    </div>
+                    <div class="input-row" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="2em" fxLayout.xs="column"
+                    fxLayoutGap.xs="0em">
+                    <div fxFlex="47%" fxLayoutAlign="start" fxLayout.xs="column" fxFlex.xs="100%">
+                        <mat-form-field class="quotematformfield">
+                            <input matInput type="text" [appAmountFormat]="editCandidateForm.controls['bidAmountStorage']" 
+                            onkeypress="return event.charCode >= 48 && event.charCode<=57" 
+                            min="1"
+                            formControlName="bidAmountStorage" placeholder="Storage Cost"/><span class="units">USD</span>
+                            <mat-error *ngIf="editCandidateForm.get('bidAmountStorage').hasError('required')">Storage Cost must be entered</mat-error>
+                            <mat-error *ngIf="editCandidateForm.get('bidAmountStorage').hasError('valueInvalid')">Storage Cost must be numeric</mat-error>
+                            <mat-error *ngIf="editCandidateForm.get('bidAmountStorage').hasError('min')">Storage Cost must be entered</mat-error>                            
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="47%" fxLayout.xs="column" fxFlex.xs="100%">
+                        <mat-form-field class="quotematformfield">
+                            <input matInput  type="text" placeholder="Days in Storage" 
+                            formControlName="bidStorageDays"
+                            [appAmountFormat]="editCandidateForm.controls['bidStorageDays']" 
+                            onkeypress="return event.charCode >= 48 && event.charCode<=57" />
+                            <mat-error *ngIf="editCandidateForm.get('bidStorageDays').hasError('required')">Days in Storage must be entered</mat-error>
+                            <mat-error *ngIf="editCandidateForm.get('bidStorageDays').hasError('valueInvalid')">Days in Storage must be numeric</mat-error>
+                            <mat-error *ngIf="editCandidateForm.get('bidStorageDays').hasError('min')">Days in Storage must be entered</mat-error>
+                        </mat-form-field>
+                    </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <br/>
+        <p class="note strong center">Please be aware that once you submit the quote response it cannot be updated</p>
+        <div mat-dialog-actions>
+            <div class="statusBtn">
+                <button class="uppercase" mat-button (click)="close()">Cancel</button>
+                <button type="submit" mat-button [disabled]="editCandidateForm.invalid" class="mat-button contained-button">Submit Quote</button>
+            </div>
+        </div>
+       </form>
+    </div>
+ </div>

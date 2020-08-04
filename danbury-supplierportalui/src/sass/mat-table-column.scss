@@ -1,0 +1,142 @@
+@import './cartus-palette.scss';
+
+.settings-selectedcount{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 'Avenir-Book', sans-serif;
+    font-size: 0.75em;
+    padding: 10px 0;
+    line-height: 0.18em;
+    span{
+        font-weight: bold;
+        padding-right: 0.18em;
+    }
+}
+
+.settingsContainer {
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    @media screen and (min-width:768px){
+        width:32.625em;
+        box-sizing:border-box;
+    }
+
+    @media screen and (max-width: 600px) {
+		overflow-y:auto;
+		// min-height: calc(100vh - 1.5em);
+		overflow-x:hidden;
+	}
+	.mat-grid-tile .mat-figure {
+		align-items: center;
+		justify-content: left;
+		-ms-flex-pack: left;
+		left: 0.4em;
+		display: block;
+	}
+	
+	.mat-dialog-content {
+        flex-grow: 1;
+        max-height: unset;
+		@media screen and (min-width:768px) {
+			overflow: hidden;
+		}
+	}
+	@media screen and (max-width:767px) {
+		max-width: 100% !important;
+		max-height: 100%;
+		width: 100% !important;
+		height: 100%;
+		.settings-tablecol {
+            // height: 20em;
+            height: 90%;
+			width: 100%;
+		}
+		.mat-grid-tile .mat-figure {
+			left: 0.6em;
+		}
+		.mat-dialog-actions {
+			justify-content: flex-end;
+		}
+		.mat-dialog-container {
+			border-radius: 0;
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+	}
+	@media screen and (min-width:768px) {
+		.settings-tablecol {
+			height: 11.55em !important;
+			width: 32.625em;
+		}
+		.mat-dialog-container {
+			overflow: hidden;
+		}
+	}
+	.mat-checkbox .mat-checkbox-ripple {
+		width: 0;
+		height: 0;
+	}
+	.settings-tablecol {
+		box-sizing: border-box;
+		border: 1px solid rgba(0, 0, 0, 0.12);
+		display: flex;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	.settings-scrolldiv {
+		overflow-y: auto;
+		flex-shrink: 50;
+		flex-basis: 100%;
+		padding-top: 0.25em;
+	}
+	.settings-scrolldiv::-webkit-scrollbar {
+		width: 0.37em;
+		background-color: #F5F5F5;
+	}
+	.settings-scrolldiv::-webkit-scrollbar-thumb {
+		background-color: map-get($cartus-palette, 'cartus_primary_dark_brown');
+	}
+	.settings-scrolldiv::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+		background-color: #fff;
+	}
+	.mat-checkbox-layout .mat-checkbox-label {
+        font-size: 1em;
+		font-family: 'Avenir-Roman', sans-serif !important;
+		color: map-get($cartus-palette, 'cartus_gray') !important;
+	}
+	.mat-dialog-title {
+		margin-bottom: 0;
+	}
+	.mat-dialog-container {
+		padding: 1em 1em 1.121em 1em;
+		// overflow: hidden;
+	}
+	.mat-checkbox-frame {
+		border-width: 1px;
+	}
+	.mat-checkbox-background,
+	.mat-checkbox-frame {
+		border-radius: 4px;
+		border-color: map-get($cartus-palette, 'cartus_light_gray');
+    }
+    .mat-checkbox-checked .mat-checkbox-background {
+		background-color: map-get($cartus-palette, 'cartus_accent_blue') !important;
+	}
+	.mat-checkbox-disabled {
+		.mat-checkbox-background{
+			background-color: map-get($cartus-palette, 'cartus_disabled_gray') !important;
+		}
+		.mat-checkbox-label{
+			color: map-get($cartus-palette, 'cartus_disabled_gray') !important;
+		}
+	}
+	.mat-dialog-actions {
+		justify-content: flex-end;
+		-ms-flex-pack: left;
+	}
+}

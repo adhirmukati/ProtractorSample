@@ -1,0 +1,212 @@
+<ngx-spinner type="ball-spin-clockwise-fade" role="alert" aria-live="assertive" size="medium">
+    <span class="cdk-visually-hidden">Loading, please wait...</span>
+</ngx-spinner>
+<div class="authorize-dialog">
+    <div mat-dialog-title disableTypography fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px"
+            fxLayoutGap.xs="0em">
+            <div class="candidate-dialogtitle">
+                <span>Edit Key Dates</span>
+            </div>
+            <a class="close-icon" id="close_icon" (click)="close()">
+                <mat-icon>close</mat-icon>
+            </a>
+        </div>
+
+    <div mat-dialog-content>
+        <form fxLayout="column" [formGroup]="keyDatesForm">
+        <div class="estdates">
+            <div class="sub-menu-label">Estimates</div>
+
+            <div class='row'>
+                <div class='column'>
+                    <div class="date-label">Estimated Pack Date Range: </div>
+                    <div class='row container'>
+                        <div class='column' formGroupName="packDateGroup">
+                            <mat-form-field class="datewidth">
+                                <input matInput [matDatepicker]="picker" placeholder="Start Date" formControlName="start">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="keyDatesForm.get('packDateGroup').hasError('endNoStart') ">{{validationErrorMessages.endNoStart}}</mat-error>
+                                
+                            </mat-form-field>
+                        </div>
+                        <div class='column' formGroupName="packDateGroup">
+                            <mat-form-field class="datewidth">
+                                <input matInput [matDatepicker]="picker1" placeholder="End Date" formControlName="end">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                                <mat-error *ngIf="keyDatesForm.get('packDateGroup').hasError('dateValidator')">{{validationErrorMessages.endDateInvalid}}</mat-error>
+                                <mat-error *ngIf="keyDatesForm.get('packDateGroup').hasError('startNoEnd')">{{validationErrorMessages.startNoEnd}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class='column'>
+                    <div class="date-label">Estimated Load Date Range: </div>
+                    <div class='row container'>
+                        <div class='column' formGroupName="loadDateGroup">
+                            <mat-form-field class="datewidth">
+                                <input matInput [matDatepicker]="picker2" placeholder="Start Date" formControlName="start">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                                <mat-error *ngIf="keyDatesForm.get('loadDateGroup').hasError('endNoStart')">{{validationErrorMessages.endNoStart}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class='column' formGroupName="loadDateGroup">
+                            <mat-form-field class="datewidth">
+                                <input matInput [matDatepicker]="picker3" placeholder="End Date" formControlName="end">
+                                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                <mat-datepicker #picker3></mat-datepicker>
+                                <mat-error *ngIf="keyDatesForm.get('loadDateGroup').hasError('dateValidator')">{{validationErrorMessages.endDateInvalid}}</mat-error>
+                                <mat-error *ngIf="keyDatesForm.get('loadDateGroup').hasError('startNoEnd')">{{validationErrorMessages.startNoEnd}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='column'>
+                    <div class="date-label">Estimated Storage In Date Range: </div>
+                    <div class='row container'>
+                        <div class='column' formGroupName="storeInDateGroup">
+                            <mat-form-field class="datewidth">
+                                <input matInput [matDatepicker]="picker4" placeholder="Start Date" formControlName="start">
+                                <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                                <mat-datepicker #picker4></mat-datepicker>
+                                <mat-error *ngIf="keyDatesForm.get('storeInDateGroup').hasError('endNoStart')">{{validationErrorMessages.endNoStart}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class='column' formGroupName="storeInDateGroup">
+                            <mat-form-field class="datewidth">
+                                <input matInput [matDatepicker]="picker5" placeholder="End Date" formControlName="end">
+                                <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                                <mat-datepicker #picker5></mat-datepicker>
+                                <mat-error *ngIf="keyDatesForm.get('storeInDateGroup').hasError('dateValidator')">{{validationErrorMessages.endDateInvalid}}</mat-error>
+                                <mat-error *ngIf="keyDatesForm.get('storeInDateGroup').hasError('startNoEnd')">{{validationErrorMessages.startNoEnd}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class='column'>
+                    <div class="date-label">Estimated Storage Out Date Range: </div>
+                    <div class='row container'>
+                        <div class='column' formGroupName="storeOutDateGroup">
+                            <mat-form-field class="datewidth">
+                                <input matInput [matDatepicker]="picker8" placeholder="Start Date" formControlName="start">
+                                <mat-datepicker-toggle matSuffix [for]="picker8"></mat-datepicker-toggle>
+                                <mat-datepicker #picker8></mat-datepicker>
+                                <mat-error *ngIf="keyDatesForm.get('storeOutDateGroup').hasError('endNoStart')">{{validationErrorMessages.endNoStart}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class='column' formGroupName="storeOutDateGroup">
+                            <mat-form-field class="datewidth">
+                                <input matInput [matDatepicker]="picker9" placeholder="End Date" formControlName="end">
+                                <mat-datepicker-toggle matSuffix [for]="picker9"></mat-datepicker-toggle>
+                                <mat-datepicker #picker9></mat-datepicker>
+                                <mat-error *ngIf="keyDatesForm.get('storeOutDateGroup').hasError('dateValidator')">{{validationErrorMessages.endDateInvalid}}</mat-error>
+                                <mat-error *ngIf="keyDatesForm.get('storeOutDateGroup').hasError('startNoEnd')">{{validationErrorMessages.startNoEnd}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                
+                <div class='column'>
+                    <div class="date-label">Estimated Delivery Date Range: </div>
+                    <div class='row container'>
+                        <div class='column' formGroupName="deliveryDateGroup">
+                            <mat-form-field class="datewidth"> 
+                                <input matInput [matDatepicker]="picker6" placeholder="Start Date" formControlName="start">
+                                <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                                <mat-datepicker #picker6></mat-datepicker>
+                                <mat-error *ngIf="keyDatesForm.get('deliveryDateGroup').hasError('endNoStart')">{{validationErrorMessages.endNoStart}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class='column' formGroupName="deliveryDateGroup">
+                            <mat-form-field class="datewidth">
+                                <input matInput [matDatepicker]="picker7" placeholder="End Date" formControlName="end">
+                                <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
+                                <mat-datepicker #picker7></mat-datepicker>
+                                <mat-error *ngIf="keyDatesForm.get('deliveryDateGroup').hasError('dateValidator')">{{validationErrorMessages.endDateInvalid}}</mat-error>
+                                <mat-error *ngIf="keyDatesForm.get('deliveryDateGroup').hasError('startNoEnd')">{{validationErrorMessages.startNoEnd}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class='column'></div>
+            </div>
+
+        </div>
+
+
+        <div class="actdates">
+
+            <div class="sub-menu-label">Actuals</div>
+
+            <div class='row container'>
+                <div class='column' formGroupName="actualsGrp">
+                    <mat-form-field style="width: 90%;">
+                        <input matInput [matDatepicker]="picker01" placeholder="Pack Date" formControlName="pack">
+                        <mat-datepicker-toggle matSuffix [for]="picker01"></mat-datepicker-toggle>
+                        <mat-datepicker #picker01></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class='column' formGroupName="actualsGrp">
+                    <mat-form-field style="width: 90%;">
+                        <input matInput [matDatepicker]="picker02" placeholder="Load Date" formControlName="load">
+                        <mat-datepicker-toggle matSuffix [for]="picker02"></mat-datepicker-toggle>
+                        <mat-datepicker #picker02></mat-datepicker>
+                        <mat-error *ngIf="keyDatesForm.get('actualsGrp').hasError('deliveryPriorToPackErr')">{{validationErrorMessages.actualLoadAgainstPackInvalid}}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='column'>
+                    <div class="date-label">Storage Date Range: </div>
+                    <div class='row container'>
+                        <div class='column' formGroupName="actualsGrp">
+                            <mat-form-field class="datewidth">
+                                <input matInput [matDatepicker]="picker03" placeholder="Date In" formControlName="storageIn">
+                                <mat-datepicker-toggle matSuffix [for]="picker03"></mat-datepicker-toggle>
+                                <mat-datepicker #picker03></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class='column' formGroupName="actualsGrp">
+                            <mat-form-field class="datewidth">
+                                <input matInput [matDatepicker]="picker04" placeholder="Date Out" formControlName="storageOut">
+                                <mat-datepicker-toggle matSuffix [for]="picker04"></mat-datepicker-toggle>
+                                <mat-datepicker #picker04></mat-datepicker>
+                                <mat-error *ngIf="keyDatesForm.get('actualsGrp').hasError('storageOutPriorErr')">{{validationErrorMessages.actualStorageOutDateInvalid}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class='column' formGroupName="actualsGrp">
+                    <div style="height: 16px;"></div>
+                    <mat-form-field class="delivery-date">
+                        <input matInput [matDatepicker]="picker05" placeholder="Delivery Date" formControlName="delivery">
+                        <mat-datepicker-toggle matSuffix [for]="picker05"></mat-datepicker-toggle>
+                        <mat-datepicker #picker05></mat-datepicker>
+                        <mat-error *ngIf="keyDatesForm.get('actualsGrp').hasError('deliveryPriorErr')">{{validationErrorMessages.actualDeliveryAgainstLoadInvalid}}</mat-error>
+                        <mat-error *ngIf="keyDatesForm.get('actualsGrp').hasError('deliveryPriorStorageErr')">{{validationErrorMessages.actualtDeliveryAgainstStorageOutInvalid}}</mat-error>
+                        
+                    </mat-form-field>
+                </div>
+            </div>
+            
+        </div>
+        </form>
+    </div>
+
+    
+    <div mat-dialog-actions>
+        <div class="statusBtn">
+            <button class="uppercase" type="button" mat-button (click)="close()">Cancel</button>
+            <button type="submit"  (click)="onSave()" mat-button [disabled]="enableSaveKeyDatesBtn()" class="mat-button contained-button">Save</button>
+        </div>
+    </div>
+</div>

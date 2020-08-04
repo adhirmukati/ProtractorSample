@@ -1,0 +1,9 @@
+@import '../../../../../sass/cartus-palette.scss';
+
+.totalWorkorder {
+    padding: 15px;
+    background: white;
+    color: map-get($cartus-palette, 'cartus_action_button');
+    font-size: 18px;
+    font-weight: 600;
+}

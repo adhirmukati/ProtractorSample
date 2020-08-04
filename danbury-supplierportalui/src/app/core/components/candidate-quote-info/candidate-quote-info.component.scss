@@ -1,0 +1,38 @@
+.sectionSubTitle{
+    font-family: "Avenir-Book", sans-serif;
+    font-size: 0.73em;
+    margin-block-start: 0em;
+    margin-block-end: 2px;
+}
+.quoteCostMatFormField{
+     width:90%;
+}
+.quote-mat-form{
+    font-family: "Avenir-Book", sans-serif;
+     font-size: 1em;
+}
+
+.quoteTile{
+    padding-inline-start: 8px;
+    padding-block-start: 4px;
+    padding-bottom: 0px;
+}
+.noneTile{
+    background-color: #F7F7F7;
+    border-radius: 2px;
+}
+.naInput{
+    color: rgba(0, 0, 0, 0.38);
+}
+@media screen and (max-width: 599px){
+    .quoteCostMatFormField{
+        width:100%;
+        
+    }
+    .quoteStorageFormField{
+        width:73%;
+    }
+    .quoteVaneLineTile{
+        padding-inline-start: 20px;
+    }
+}

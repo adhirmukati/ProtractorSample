@@ -1,0 +1,22 @@
+@import '../../../../sass/cartus-palette.scss';
+
+.loader-icon-loader{
+    position: absolute;
+}
+
+.invitation .snack-icons .loader-close-icon{
+    font-size: 1.25em !important;
+    position: relative;
+    color: map-get($cartus-palette , 'cartus_pale_gray' );
+    opacity: 1;
+}
+
+.snack-icons{
+    position: relative;
+    cursor: pointer;
+}
+
+.sent{
+    opacity: 1;
+    color: map-get($cartus-palette , 'cartus_nav_tile' );   
+}
