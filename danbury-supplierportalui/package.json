@@ -97,7 +97,7 @@
     "ng-mocks": "^8.1.0",
     "ngx-cookie-service": "^2.2.0",
     "ngx-spinner": "^8.0.3",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "promiz": "^1.0.5",
     "querystring": "^0.2.0",
     "rxjs": "~6.5.2",
