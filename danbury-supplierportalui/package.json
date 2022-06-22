@@ -92,7 +92,7 @@
     "classlist.js": "^1.1.20150312",
     "core-js": "^3.5.0",
     "crypto-js": "^3.1.9-1",
-    "got": "^10.7.0",
+    "got": "^11.8.5",
     "moment": "^2.24.0",
     "ng-mocks": "^8.1.0",
     "ngx-cookie-service": "^2.2.0",
