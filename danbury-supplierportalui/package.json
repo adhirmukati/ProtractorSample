@@ -134,7 +134,7 @@
     "cucumber": "^5.1.0",
     "cucumber-html-report": "^0.6.5",
     "cucumber-junit": "^1.7.1",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "inline-css-cli": "0.0.1",
     "jasmine": "^2.99.0",
     "jasmine-core": "~2.99.1",
